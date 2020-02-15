@@ -5,6 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    slideButtons: [{
+      type: "warn",
+      text: "删除"
+    }],
     myActivities: [{
       coverImage: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
       publisher: "大贝塔",
