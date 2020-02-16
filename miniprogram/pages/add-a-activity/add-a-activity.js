@@ -1,11 +1,12 @@
-// pages/deployFunctions/deployFunctions.js
+// miniprogram/pages/add-a-activity/add-a-activity.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    startDate: '2016-09-01',
+    startTime: '12:01',
   },
 
   /**
