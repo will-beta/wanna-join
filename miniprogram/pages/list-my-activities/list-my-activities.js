@@ -12,7 +12,7 @@ Page({
     myActivities: [{
       coverImage: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
       publisher: "大贝塔",
-      startTime: "2020-1-1",
+      startTime: "2020-1-0",
       location: "上海",
       status: "已报名"
     }, {
@@ -24,16 +24,23 @@ Page({
     }, {
       coverImage: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
       publisher: "大贝塔",
-      startTime: "2020-1-1",
+      startTime: "2020-1-2",
       location: "上海",
       status: "已报名"
     }, {
       coverImage: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
       publisher: "大贝塔",
-      startTime: "2020-1-1",
+      startTime: "2020-1-3",
       location: "上海",
       status: "已报名"
     }]
+  },
+
+  slideButtonTap(e) {
+    this.data.myActivities.splice(e.currentTarget.dataset.index, 1)
+    this.setData({
+      myActivities: this.data.myActivities
+    })
   },
 
   /**

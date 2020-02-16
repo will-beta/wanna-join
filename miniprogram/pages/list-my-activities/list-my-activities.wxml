@@ -6,7 +6,7 @@
 </view>
 <scroll-view scroll-y="true" style="height:90%;">
   <view wx:for="{{myActivities}}" wx:key="index" wx:for-item="activity" style="margin: 40rpx 20rpx;">
-    <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+    <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-index="{{index}}">
       <view style="display:flex; flex-direction:row;">
         <view style="width:35%;">
           <image mode="aspectFit" src="{{activity.coverImage}}" style="width:100%;height:100%;"></image>
