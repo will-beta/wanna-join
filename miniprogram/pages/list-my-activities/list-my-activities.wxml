@@ -17,7 +17,8 @@
           </view>
           <view style="width:60%; padding:2%;" class="vertical-block">
             <view>
-              <rich-text>{{activity.description}}</rich-text>
+              <mp-icon icon="text" size="{{15}}" style="margin-right:10rpx;"></mp-icon>
+              <text style="font-weight:bold;">{{activity.title}}</text>
             </view>
             <view>
               <mp-icon icon="me" size="{{15}}" style="margin-right:10rpx;"></mp-icon>

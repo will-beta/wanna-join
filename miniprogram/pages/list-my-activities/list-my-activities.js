@@ -12,6 +12,7 @@ Page({
     }],
     myActivities: [{
       coverImage: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
+      title: "活动0",
       publisher: "大贝塔",
       startTime: "2020-1-0",
       location: {
@@ -21,6 +22,7 @@ Page({
       status: "已报名"
     }, {
       coverImage: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
+      title: "活动1",
       publisher: "大贝塔",
       startTime: "2020-1-1",
       location: {
@@ -30,6 +32,7 @@ Page({
       status: "已报名"
     }, {
       coverImage: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
+      title: "活动2",
       publisher: "大贝塔",
       startTime: "2020-1-2",
       location: {
@@ -39,6 +42,7 @@ Page({
       status: "已报名"
     }, {
       coverImage: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
+      title: "活动3",
       publisher: "大贝塔",
       startTime: "2020-1-3",
       location: {
