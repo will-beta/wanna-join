@@ -1,32 +1,75 @@
-<editor placeholder="在此输入活动介绍" auto-height="true" style="background:#ffffff;min-height:250rpx;width:100%;"></editor>
-<view style="display:flex; flex-direction:row; margin:25rpx 20rpx;">
-  <mp-icon icon="time" size="{{35}}" style="margin-right:10rpx;"></mp-icon>
-  <view>
-    <text>活动时间</text>
-    <view style="display:flex; flex-direction:row;">
-      <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01">
-        <view style="background: #fff; padding: 5rpx 10rpx;">
-          {{startDate}}
-        </view>
-      </picker>
-      <text>{{"　"}}</text>
-      <picker mode="time" value="{{time}}" start="09:01" end="21:01">
-        <view style="background: #fff; padding: 5rpx 10rpx;">
-          {{startTime}}
-        </view>
-      </picker>
+<view wx:if="{{!userInfo}}">
+  <login bind:getUserInfo="onGetUserInfo"></login>
+</view>
+<view wx:else>
+  <editor placeholder="输入活动介绍" auto-height="true" style="background:#ffffff;"></editor>
+  <view style="display:flex; flex-direction:row; margin:20rpx 0rpx;">
+    <mp-icon icon="location" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
+    <view>
+      <view>发布者</view>
+      <input type="text" value="{{publisher}}" style="background: #fff;" />
     </view>
   </view>
-</view>
-<view style="display:flex; flex-direction:row; margin:25rpx 20rpx;">
-  <mp-icon icon="location" size="{{35}}" style="margin-right:10rpx;"></mp-icon>
-  <view>
-    <text>活动地点</text>
-    <view style="display:flex; flex-direction:row; background: #fff; padding: 5rpx 10rpx;">
-      <navigator url="/pages/choose-a-location/choose-a-location" style="margin-right:20rpx;">
-        选择位置
-      </navigator>
+  <view style="display:flex; flex-direction:row; margin:20rpx 0rpx;">
+    <mp-icon icon="time" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
+    <view>
+      <view style="padding:10rpx;">
+        <view>活动开始时间</view>
+        <view style="display:flex; flex-direction:row;">
+          <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01">
+            <view style="background: #fff; padding: 5rpx 10rpx;">{{startDate}}</view>
+          </picker>
+          <text>{{"　"}}</text>
+          <picker mode="time" value="{{time}}" start="09:01" end="21:01">
+            <view style="background: #fff; padding: 5rpx 10rpx;">{{startTime}}</view>
+          </picker>
+        </view>
+      </view>
+      <view style="padding:10rpx;">
+        <view>活动结束时间</view>
+        <view style="display:flex; flex-direction:row;">
+          <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01">
+            <view style="background: #fff; padding: 5rpx 10rpx;">{{startDate}}</view>
+          </picker>
+          <text>{{"　"}}</text>
+          <picker mode="time" value="{{time}}" start="09:01" end="21:01">
+            <view style="background: #fff; padding: 5rpx 10rpx;">{{startTime}}</view>
+          </picker>
+        </view>
+      </view>
+      <view style="padding:10rpx;">
+        <view>报名截止时间</view>
+        <view style="display:flex; flex-direction:row;">
+          <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01">
+            <view style="background: #fff; padding: 5rpx 10rpx;">{{startDate}}</view>
+          </picker>
+          <text>{{"　"}}</text>
+          <picker mode="time" value="{{time}}" start="09:01" end="21:01">
+            <view style="background: #fff; padding: 5rpx 10rpx;">{{startTime}}</view>
+          </picker>
+        </view>
+      </view>
     </view>
   </view>
+  <view bind:tap="onChooseLocation" style="display:flex; flex-direction:row; margin:20rpx 0rpx;">
+    <mp-icon icon="location" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
+    <view>
+      <view>活动地点</view>
+      <view style="background: #fff;">
+        {{location.name}}
+      </view>
+      <view style="background: #fff;">
+        {{location.address}}
+      </view>
+      <view wx:if="{{!location}}">点击选择位置</view>
+    </view>
+  </view>
+  <view style="display:flex; flex-direction:row; margin:20rpx 0rpx;">
+    <mp-icon icon="group-detail" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
+    <view>
+      <view>人数限制</view>
+      <input type="number" placeholder="不限" value="{{maxCount}}" bindblur="onChangeMaxCount" style="background: #fff;" />
+    </view>
+  </view>
+  <button type="primary">创建新活动</button>
 </view>
-<button type="primary">创建新活动</button>

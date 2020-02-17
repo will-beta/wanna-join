@@ -1,12 +1,11 @@
 {
   "permission": {
     "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+      "desc": "是否允许自动填写你的地理位置信息"
     }
   },
   "pages": [
     "pages/list-my-activities/list-my-activities",
-    "pages/choose-a-location/choose-a-location",
     "pages/add-a-activity/add-a-activity"
   ],
   "window": {

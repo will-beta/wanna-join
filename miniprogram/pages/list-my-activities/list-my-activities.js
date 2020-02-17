@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: null,
     slideButtons: [{
       type: "warn",
       text: "删除"
@@ -13,27 +14,45 @@ Page({
       coverImage: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
       publisher: "大贝塔",
       startTime: "2020-1-0",
-      location: "上海",
+      location: {
+        name: "海南",
+        address: null
+      },
       status: "已报名"
     }, {
       coverImage: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
       publisher: "大贝塔",
       startTime: "2020-1-1",
-      location: "上海",
+      location: {
+        name: "浙江",
+        address: null
+      },
       status: "已报名"
     }, {
       coverImage: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
       publisher: "大贝塔",
       startTime: "2020-1-2",
-      location: "上海",
+      location: {
+        name: "上海",
+        address: null
+      },
       status: "已报名"
     }, {
       coverImage: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
       publisher: "大贝塔",
       startTime: "2020-1-3",
-      location: "上海",
+      location: {
+        name: "北京",
+        address: null
+      },
       status: "已报名"
     }]
+  },
+
+  onGetUserInfo(e) {
+    this.setData({
+      "userInfo": e.detail
+    })
   },
 
   slideButtonTap(e) {
@@ -47,7 +66,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    wx.getUserInfo({
+      success: res => {
+        this.setData({
+          userInfo: res.userInfo,
+          publisher: res.userInfo.nickName
+        })
+      }
+    })
   },
 
   /**
