@@ -9,10 +9,10 @@
     </navigator>
   </view>
   <scroll-view scroll-y="true" style="height:90%;">
-    <view wx:for="{{myActivities}}" wx:key="index" wx:for-item="activity" style="margin: 40rpx 20rpx;">
-      <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-index="{{index}}">
-        <view style="display:flex; flex-direction:row;">
-          <view style="width:97%; padding:2%;" class="vertical-block">
+    <mp-cells>
+      <mp-slideview wx:for="{{myActivities}}" wx:key="index" wx:for-item="activity" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-index="{{index}}" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-index="{{index}}">
+        <mp-cell>
+          <view>
             <view>
               <mp-icon icon="text" size="{{15}}" style="margin-right:12rpx;"></mp-icon>
               <text style="font-weight:bold; font-size:large;">{{activity.title}}</text>
@@ -30,11 +30,9 @@
               <text>{{activity.location.name}}</text>
             </view>
           </view>
-          <view style="width:3%; padding:2%; display:flex; align-items:center;">
-            <text>{{activity.status}}</text>
-          </view>
-        </view>
+          <view slot="footer">{{activity.status}}</view>
+        </mp-cell>
       </mp-slideview>
-    </view>
+    </mp-cells>
   </scroll-view>
 </view>
