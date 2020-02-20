@@ -26,6 +26,8 @@ exports.main = async(event, context) => {
     .where({
       _id: db.command.in(myActivityIds),
     })
+    .orderBy('startTime', 'desc')
+    .limit(100)
     .get()
   console.log("entities")
   console.log(entities)
