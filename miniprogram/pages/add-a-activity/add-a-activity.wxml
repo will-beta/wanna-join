@@ -2,9 +2,13 @@
   <login bind:getUserInfo="onGetUserInfo"></login>
 </view>
 <view wx:else>
-  <input type="text" placeholder="活动标题" value="{{title}}" class="editable" style="margin-bottom:5rpx" bindblur="onChangeTitle" />
-  <editor placeholder="活动介绍" value="{{description}}" auto-height="true" class="editable" bindblur="onChangeDescription"></editor>
   <mp-cells>
+    <mp-cell>
+      <input type="text" placeholder="活动标题" value="{{title}}" class="editable" bindblur="onChangeTitle" />
+    </mp-cell>
+    <mp-cell>
+      <editor placeholder="活动介绍" value="{{description}}" auto-height="true" class="editable" bindblur="onChangeDescription"></editor>
+    </mp-cell>
     <mp-cell>
       <view>
         <mp-icon icon="time" size="{{35}}" style="margin-right:20rpx;"></mp-icon>

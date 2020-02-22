@@ -18,9 +18,9 @@ exports.main = async(event, context) => {
 
         title: event.title,
         description: event.description,
-        startDate: event.startDateTime,
-        endDate: event.endDateTime,
-        deadlineDate: event.deadlineDateTime,
+        startDateTime: event.startDate + ' ' + event.startTime,
+        endDateTime: event.endDate + ' ' + event.endTime,
+        deadlineDateTime: event.deadlineDate + ' ' + event.deadlineTime,
         location: event.location,
         maxCount: event.maxCount,
 

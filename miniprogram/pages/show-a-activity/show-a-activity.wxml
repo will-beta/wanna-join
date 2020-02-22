@@ -1,0 +1,4 @@
+<button>报名</button>
+<navigator url="{{'/pages/modify-a-activity/modify-a-activity?_id='+activity._id}}">
+  修改
+</navigator>

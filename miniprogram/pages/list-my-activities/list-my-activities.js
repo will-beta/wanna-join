@@ -20,7 +20,7 @@ Page({
     })
   },
 
-  slideButtonTap(e) {
+  onSlideButtonTap(e) {
     this.data.myActivities.splice(e.currentTarget.dataset.index, 1)
     this.setData({
       myActivities: this.data.myActivities
@@ -37,7 +37,7 @@ Page({
       }
     })
 
-    this.refreshMyActivities = false
+    this.forceRefreshMyActivities = false
   },
 
   /**
@@ -67,7 +67,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (this.refreshMyActivities)
+    if (this.forceRefreshMyActivities)
       this.refreshMyActivities()
   },
 
@@ -75,7 +75,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    this.refreshMyActivities = true
+    this.forceRefreshMyActivities = true
   },
 
   /**
