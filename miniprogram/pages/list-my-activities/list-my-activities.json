@@ -3,7 +3,6 @@
   "usingComponents": {
     "mp-cell": "../../miniprogram_npm/weui-miniprogram/cell/cell",
     "mp-cells": "../../miniprogram_npm/weui-miniprogram/cells/cells",
-    "mp-searchbar": "../../miniprogram_npm/weui-miniprogram/searchbar/searchbar",
     "mp-slideview": "../../miniprogram_npm/weui-miniprogram/slideview/slideview",
     "mp-icon": "../../miniprogram_npm/weui-miniprogram/icon/icon",
     "login": "../../components/login/login"

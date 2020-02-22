@@ -19,8 +19,6 @@ Component({
    */
   methods: {
     onGetUserInfo(e) {
-      console.log("组件")
-      console.warn(e)
       this.triggerEvent("getUserInfo", e.detail.userInfo);
     },
   }

@@ -1,1 +1,4 @@
-/* miniprogram/pages/add-a-activity/add-a-activity.wxss */
+.editable {
+  background: #fff;
+  padding: 5rpx 10rpx;
+}

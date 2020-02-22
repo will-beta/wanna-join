@@ -3,47 +3,38 @@
 </view>
 <view wx:else>
   <scroll-view scroll-y="true" style="position:fixed; height:100%;">
-    <mp-cells>
-      <mp-slideview wx:for="{{myActivities}}" wx:key="index" wx:for-item="activity" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-index="{{index}}" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-index="{{index}}">
-        <mp-cell>
-          <view>
+    <block wx:if="{{myActivities.length>0}}">
+      <mp-cells>
+        <mp-slideview wx:for="{{myActivities}}" wx:key="index" wx:for-item="activity" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-index="{{index}}" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-index="{{index}}">
+          <mp-cell>
             <view>
-              <mp-icon icon="text" size="{{15}}" style="margin-right:12rpx;"></mp-icon>
-              <text style="font-weight:bold; font-size:large;">{{activity.title}}</text>
+              <view>
+                <mp-icon icon="text" size="{{20}}" style="margin-right:12rpx;"></mp-icon>
+                <text wx:if="{{activity.title}}" style="font-weight:bold; font-size:large;">{{activity.title}}</text>
+              </view>
+              <view>
+                <mp-icon icon="me" size="{{20}}" style="margin-right:12rpx;"></mp-icon>
+                <text wx:if="{{activity.userInfo.nickName}}">{{activity.userInfo.nickName}}</text>
+              </view>
+              <view>
+                <mp-icon icon="time" size="{{20}}" style="margin-right:12rpx;"></mp-icon>
+                <text wx:if="{{activity.startDateTime}}">{{activity.startDateTime}}</text>
+              </view>
+              <view>
+                <mp-icon icon="location" size="{{20}}" style="margin-right:12rpx;"></mp-icon>
+                <text wx:if="{{activity.location.name}}">{{activity.location.name}}</text>
+              </view>
             </view>
-            <view>
-              <mp-icon icon="me" size="{{15}}" style="margin-right:12rpx;"></mp-icon>
-              <text>{{activity.publisher}}</text>
-            </view>
-            <view>
-              <mp-icon icon="time" size="{{15}}" style="margin-right:12rpx;"></mp-icon>
-              <text>{{activity.startTime}}</text>
-            </view>
-            <view>
-              <mp-icon icon="location" size="{{15}}" style="margin-right:12rpx;"></mp-icon>
-              <text>{{activity.location.name}}</text>
-            </view>
-            <view>
-              <mp-icon icon="location" size="{{15}}" style="margin-right:12rpx;"></mp-icon>
-              <text>{{activity.location.name}}</text>
-            </view>
-            <view>
-              <mp-icon icon="location" size="{{15}}" style="margin-right:12rpx;"></mp-icon>
-              <text>{{activity.location.name}}</text>
-            </view>
-            <view>
-              <mp-icon icon="location" size="{{15}}" style="margin-right:12rpx;"></mp-icon>
-              <text>{{activity.location.name}}</text>
-            </view>
-          </view>
-          <view slot="footer">{{activity.status}}</view>
-        </mp-cell>
-      </mp-slideview>
-    </mp-cells>
+            <view slot="footer">{{activity.status}}</view>
+          </mp-cell>
+        </mp-slideview>
+      </mp-cells>
+    </block>
+    <view wx:else style="color:lightgrey">无活动</view>
   </scroll-view>
-  <view style="position:fixed; bottom:5%; right:5%;">
+  <view style="position:fixed; bottom:10%; right:5%;">
     <navigator url="/pages/add-a-activity/add-a-activity">
-      <mp-icon type="field" icon="add2" color="#444" size="{{35}}">
+      <mp-icon type="field" icon="add2" color="#333" size="{{50}}">
       </mp-icon>
     </navigator>
   </view>
