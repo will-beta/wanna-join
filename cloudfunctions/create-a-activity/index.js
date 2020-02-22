@@ -12,15 +12,15 @@ exports.main = async(event, context) => {
     .collection('activities')
     .add({
       data: {
-        _createdAt: Date(),
+        _createdAt: new Date(),
         _createdBy: wxContext.OPENID,
 
 
         title: event.title,
         description: event.description,
-        startDateTime: event.startDate + ' ' + event.startTime,
-        endDateTime: event.endDate + ' ' + event.endTime,
-        deadlineDateTime: event.deadlineDate + ' ' + event.deadlineTime,
+        startDateTime: (event.startDate || event.startTime) ? [event.startDate, event.startTime].join(' ') : null,
+        endDateTime: (event.endDate || event.endTime) ? [event.endDate, event.endTime].join(' ') : null,
+        deadlineDateTime: (event.deadlineDate || event.deadlineTime) ? [event.deadlineDate, event.deadlineTime].join(' ') : null,
         location: event.location,
         maxCount: event.maxCount,
 
@@ -32,9 +32,10 @@ exports.main = async(event, context) => {
     .collection('my-activities')
     .add({
       data: {
-        _createdAt: Date(),
+        _createdAt: new Date(),
         _createdBy: wxContext.OPENID,
         activityId: activity._id,
+        userInfo: event.userInfo,
         status: '已阅'
       }
     })

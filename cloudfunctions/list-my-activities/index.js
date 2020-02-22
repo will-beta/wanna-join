@@ -10,21 +10,22 @@ exports.main = async(event, context) => {
 
   const myActivities = await db
     .collection('my-activities')
-    .where({
-      _createdBy: wxContext.OPENID
+    .aggregate()
+    .lookup({
+      from: "activities",
+      localField: "activityId",
+      foreignField: "_id",
+      as: "activities"
     })
-    .get()
+    .end()
 
-  const myActivityIds = myActivities.data.map(d => d.activityId)
-
-  const entities = await db
-    .collection('activities')
-    .where({
-      _id: db.command.in(myActivityIds),
+  const data = myActivities.list.map(a => {
+    Object.assign(a, {
+      activity: a.activities[0]
     })
-    .orderBy('startTime', 'desc')
-    .limit(100)
-    .get()
+    delete a.activities
+    return a
+  })
 
-  return entities.data
+  return data
 }
