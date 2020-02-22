@@ -7,15 +7,15 @@ cloud.init()
 exports.main = async(event, context) => {
   const db = cloud.database()
 
-  const entities = await db
-    .collection('my-activities')
+  const activities = await db
+    .collection('activities')
     .where({
       _id: event._id,
     })
     .get()
+  
+  console.log(event)
+  console.log(activities)
 
-  if (entities.data.length > 0) {
-    return entities.data[0]
-  }
-  return null
+  return activities.data[0]
 }

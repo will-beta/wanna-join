@@ -6,8 +6,8 @@
   },
   "pages": [
     "pages/list-my-activities/list-my-activities",
-    "pages/add-a-activity/add-a-activity",
-    "pages/show-a-activity/show-a-activity",
+    "pages/show-my-activity/show-my-activity",
+    "pages/create-a-activity/create-a-activity",
     "pages/modify-a-activity/modify-a-activity"
   ],
   "window": {

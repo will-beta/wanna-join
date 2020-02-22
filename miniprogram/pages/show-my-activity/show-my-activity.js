@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    activity: null
+    myActivity: null
   },
 
   /**
@@ -13,13 +13,13 @@ Page({
    */
   onLoad: function(options) {
     wx.cloud.callFunction({
-      name: 'show-a-activity',
+      name: 'show-my-activity',
       data: {
         _id: options._id
       },
       success: res => {
         this.setData({
-          activity: res.result
+          myActivity: res.result
         })
         console.log("成功")
         console.log(res)
@@ -76,6 +76,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    console.log(this.data)
+    this.setData({
+      myActivity: this.data.myActivity
+    })
   }
 })

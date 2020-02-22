@@ -11,21 +11,10 @@ exports.main = async(event, context) => {
   const activity = await db
     .collection('activities')
     .add({
-      data: {
+      data: Object.assign({
         _createdAt: new Date(),
         _createdBy: wxContext.OPENID,
-
-
-        title: event.title,
-        description: event.description,
-        startDateTime: (event.startDate || event.startTime) ? [event.startDate, event.startTime].join(' ') : null,
-        endDateTime: (event.endDate || event.endTime) ? [event.endDate, event.endTime].join(' ') : null,
-        deadlineDateTime: (event.deadlineDate || event.deadlineTime) ? [event.deadlineDate, event.deadlineTime].join(' ') : null,
-        location: event.location,
-        maxCount: event.maxCount,
-
-        userInfo: event.userInfo,
-      }
+      }, event)
     })
 
   await db

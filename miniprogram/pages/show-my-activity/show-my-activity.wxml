@@ -1,0 +1,5 @@
+<button>报名</button>
+<navigator wx:if="{{myActivity.activityId}}" url="{{'/pages/modify-a-activity/modify-a-activity?_id='+myActivity.activityId}}">
+  修改
+</navigator>
+<text>{{myActivity}}</text>

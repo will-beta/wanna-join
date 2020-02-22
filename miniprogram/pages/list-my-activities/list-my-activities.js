@@ -49,8 +49,7 @@ Page({
     wx.getUserInfo({
       success: res => {
         this.setData({
-          userInfo: res.userInfo,
-          publisher: res.userInfo.nickName
+          userInfo: res.userInfo
         })
       }
     })

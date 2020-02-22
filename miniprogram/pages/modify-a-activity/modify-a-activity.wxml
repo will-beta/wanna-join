@@ -1,2 +1,98 @@
-<!--miniprogram/pages/modify-a-activity/modify-a-activity.wxml-->
-<text>miniprogram/pages/modify-a-activity/modify-a-activity.wxml</text>
+<view wx:if="{{!userInfo}}">
+  <login bind:getUserInfo="onGetUserInfo"></login>
+</view>
+<view wx:else>
+  <mp-cells>
+    <mp-cell>
+      <input type="text" placeholder="活动标题" value="{{activity.title}}" class="editable" bindblur="onChangeTitle" />
+    </mp-cell>
+    <mp-cell>
+      <editor placeholder="活动介绍" value="{{activity.description}}" auto-height="true" class="editable" bindblur="onChangeDescription"></editor>
+    </mp-cell>
+    <mp-cell>
+      <view>
+        <mp-icon icon="time" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
+      </view>
+      <view>
+        <view style="padding:10rpx;">
+          <text>活动开始时间</text>
+          <view style="display:flex; flex-direction:row;">
+            <picker mode="date" bindchange="onChangeStartDate">
+              <view class="editable" style="margin:0rpx 10rpx;">
+                <block wx:if="{{activity.startDate}}">{{activity.startDate}}</block>
+                <block wx:else>选择日期</block>
+              </view>
+            </picker>
+            <picker mode="time" bindchange="onChangeStartTime">
+              <view class="editable" style="margin:0rpx 10rpx;">
+                <block wx:if="{{activity.startTime}}">{{activity.startTime}}</block>
+                <block wx:else>选择时间</block>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view style="padding:10rpx;">
+          <text>活动结束时间</text>
+          <view style="display:flex; flex-direction:row;">
+            <picker mode="date" bindchange="onChangeEndDate">
+              <view class="editable" style="margin:0rpx 10rpx;">
+                <block wx:if="{{activity.endDate}}">{{activity.endDate}}</block>
+                <block wx:else>选择日期</block>
+              </view>
+            </picker>
+            <picker mode="time" bindchange="onChangeEndTime">
+              <view class="editable" style="margin:0rpx 10rpx;">
+                <block wx:if="{{activity.endTime}}">{{activity.endTime}}</block>
+                <block wx:else>选择时间</block>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view style="padding:10rpx;">
+          <text>报名截止时间</text>
+          <view style="display:flex; flex-direction:row;">
+            <picker mode="date" bindchange="onChangeDeadlineDate">
+              <view class="editable" style="margin:0rpx 10rpx;">
+                <block wx:if="{{activity.deadlineDate}}">{{activity.deadlineDate}}</block>
+                <block wx:else>选择日期</block>
+              </view>
+            </picker>
+            <picker mode="time" bindchange="onChangeDeadlineTime">
+              <view class="editable" style="margin:0rpx 10rpx;">
+                <block wx:if="{{activity.deadlineTime}}">{{activity.deadlineTime}}</block>
+                <block wx:else>选择时间</block>
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+    </mp-cell>
+    <mp-cell bind:tap="onChooseLocation">
+      <view>
+        <mp-icon icon="location" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
+      </view>
+      <view>
+        <text>活动地点</text>
+        <view wx:if="{{!activity.location}}" class="editable">选择定位</view>
+        <block wx:else>
+          <view class="editable" style="font-weight: bold;">
+            {{activity.location.name}}
+          </view>
+          <view class="editable">
+            {{activity.location.address}}
+          </view>
+        </block>
+      </view>
+    </mp-cell>
+    <mp-cell>
+      <view>
+        <mp-icon icon="group-detail" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
+      </view>
+      <view>
+        <text>人数限制</text>
+        <input type="number" placeholder="不限" value="{{activity.maxCount}}" bindblur="onChangeMaxCount" class="editable" />
+      </view>
+    </mp-cell>
+  </mp-cells>
+  <button type="primary" bindtap="onModifyActivity" style="margin-bottom:40rpx;">修改活动</button>
+</view>
