@@ -20,7 +20,8 @@
                   </view>
                   <view class="row">
                     <mp-icon icon="time" size="{{20}}"></mp-icon>
-                    <text>{{[myActivity.activity.startDate,myActivity.activity.startTime].join(' ')}}</text>
+                    <text>{{myActivity.activity.startDate}}</text>
+                    <text>{{myActivity.activity.startTime}}</text>
                   </view>
                   <view class="row">
                     <mp-icon icon="location" size="{{20}}"></mp-icon>

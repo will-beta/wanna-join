@@ -21,11 +21,6 @@ Page({
         this.setData({
           myActivity: res.result
         })
-        console.log("成功")
-        console.log(res)
-      },
-      fail: res => {
-        console.log("失败" + res)
       }
     })
   },
@@ -76,7 +71,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-    console.log(this.data)
     this.setData({
       myActivity: this.data.myActivity
     })

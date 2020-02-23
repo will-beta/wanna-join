@@ -14,7 +14,8 @@ exports.main = async(event, context) => {
       data: Object.assign({
         _createdAt: new Date(),
         _createdBy: wxContext.OPENID,
-      }, event)
+        userInfo: event.userInfo
+      }, event.activity)
     })
 
   await db

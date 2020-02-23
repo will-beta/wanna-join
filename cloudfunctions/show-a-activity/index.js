@@ -13,9 +13,6 @@ exports.main = async(event, context) => {
       _id: event._id,
     })
     .get()
-  
-  console.log(event)
-  console.log(activities)
 
   return activities.data[0]
 }

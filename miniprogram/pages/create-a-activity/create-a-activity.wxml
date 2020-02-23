@@ -4,10 +4,10 @@
 <view wx:else>
   <mp-cells>
     <mp-cell>
-      <input type="text" placeholder="活动标题" value="{{title}}" class="editable" bindblur="onChangeTitle" />
+      <input type="text" placeholder="活动标题" value="{{activity.title}}" class="editable" bindblur="onChangeTitle" />
     </mp-cell>
     <mp-cell>
-      <editor placeholder="活动介绍" value="{{description}}" auto-height="true" class="editable" bindblur="onChangeDescription"></editor>
+      <textarea placeholder="活动介绍" maxlength="-1" value="{{activity.description}}" auto-height="true" class="editable" style="min-height:150rpx;width:98%;" bindblur="onChangeDescription"></textarea>
     </mp-cell>
     <mp-cell>
       <view>
@@ -15,52 +15,52 @@
       </view>
       <view>
         <view style="padding:10rpx;">
-          <text>活动开始时间</text>
+          <text>开始于</text>
           <view style="display:flex; flex-direction:row;">
             <picker mode="date" bindchange="onChangeStartDate">
               <view class="editable" style="margin:0rpx 10rpx;">
-                <block wx:if="{{startDate}}">{{startDate}}</block>
-                <block wx:else>选择日期</block>
+                <block wx:if="{{activity.startDate}}">{{activity.startDate}}</block>
+                <block wx:else>日期</block>
               </view>
             </picker>
             <picker mode="time" bindchange="onChangeStartTime">
               <view class="editable" style="margin:0rpx 10rpx;">
-                <block wx:if="{{startTime}}">{{startTime}}</block>
-                <block wx:else>选择时间</block>
+                <block wx:if="{{activity.startTime}}">{{activity.startTime}}</block>
+                <block wx:else>时间</block>
               </view>
             </picker>
           </view>
         </view>
         <view style="padding:10rpx;">
-          <text>活动结束时间</text>
+          <text>结束于</text>
           <view style="display:flex; flex-direction:row;">
             <picker mode="date" bindchange="onChangeEndDate">
               <view class="editable" style="margin:0rpx 10rpx;">
-                <block wx:if="{{endDate}}">{{endDate}}</block>
-                <block wx:else>选择日期</block>
+                <block wx:if="{{activity.endDate}}">{{activity.endDate}}</block>
+                <block wx:else>日期</block>
               </view>
             </picker>
             <picker mode="time" bindchange="onChangeEndTime">
               <view class="editable" style="margin:0rpx 10rpx;">
-                <block wx:if="{{endTime}}">{{endTime}}</block>
-                <block wx:else>选择时间</block>
+                <block wx:if="{{activity.endTime}}">{{activity.endTime}}</block>
+                <block wx:else>时间</block>
               </view>
             </picker>
           </view>
         </view>
         <view style="padding:10rpx;">
-          <text>报名截止时间</text>
+          <text>报名截止于</text>
           <view style="display:flex; flex-direction:row;">
             <picker mode="date" bindchange="onChangeDeadlineDate">
               <view class="editable" style="margin:0rpx 10rpx;">
-                <block wx:if="{{deadlineDate}}">{{deadlineDate}}</block>
-                <block wx:else>选择日期</block>
+                <block wx:if="{{activity.deadlineDate}}">{{activity.deadlineDate}}</block>
+                <block wx:else>日期</block>
               </view>
             </picker>
             <picker mode="time" bindchange="onChangeDeadlineTime">
               <view class="editable" style="margin:0rpx 10rpx;">
-                <block wx:if="{{deadlineTime}}">{{deadlineTime}}</block>
-                <block wx:else>选择时间</block>
+                <block wx:if="{{activity.deadlineTime}}">{{activity.deadlineTime}}</block>
+                <block wx:else>时间</block>
               </view>
             </picker>
           </view>
@@ -72,14 +72,14 @@
         <mp-icon icon="location" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
       </view>
       <view>
-        <text>活动地点</text>
-        <view wx:if="{{!location}}" class="editable">选择定位</view>
+        <text>地点</text>
+        <view wx:if="{{!activity.location}}" class="editable">定位</view>
         <block wx:else>
           <view class="editable" style="font-weight: bold;">
-            {{location.name}}
+            {{activity.location.name}}
           </view>
           <view class="editable">
-            {{location.address}}
+            {{activity.location.address}}
           </view>
         </block>
       </view>
@@ -90,9 +90,9 @@
       </view>
       <view>
         <text>人数限制</text>
-        <input type="number" placeholder="不限" value="{{maxCount}}" bindblur="onChangeMaxCount" class="editable" />
+        <input type="number" placeholder="不限" value="{{activity.maxCount}}" bindblur="onChangeMaxCount" class="editable" />
       </view>
     </mp-cell>
   </mp-cells>
-  <button type="primary" bindtap="onCreateActivity" style="margin-bottom:40rpx;">创建新活动</button>
+  <button type="primary" bindtap="onCreateActivity" style="margin-bottom:40rpx;">创建活动</button>
 </view>

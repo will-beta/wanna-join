@@ -6,3 +6,7 @@
 .row mp-icon {
   margin-right: 15rpx;
 }
+
+.row text {
+  margin-right: 15rpx;
+}

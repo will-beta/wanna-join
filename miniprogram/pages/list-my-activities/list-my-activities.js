@@ -31,8 +31,6 @@ Page({
     wx.cloud.callFunction({
       name: 'list-my-activities',
       success: res => {
-        console.log('我的活动')
-        console.log(res)
         this.setData({
           myActivities: res.result
         })

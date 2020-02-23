@@ -4,18 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: null,
-    description: null,
-    startDate: null,
-    startTime: null,
-    endDate: null,
-    endTime: null,
-    deadlineDate: null,
-    deadlineTime: null,
-    location: null,
-    maxCount: null,
-
     userInfo: null,
+    activity: {}
   },
 
   onGetUserInfo(e) {
@@ -25,60 +15,68 @@ Page({
   },
 
   onChangeTitle(e) {
-    this.data.title = e.detail.value
+    this.data.activity.title = e.detail.value
   },
 
   onChangeDescription(e) {
-    this.data.description = e.detail.value
+    this.data.activity.description = e.detail.value
   },
 
   onChangeStartDate(e) {
+    this.data.activity.startDate = e.detail.value
     this.setData({
-      startDate: e.detail.value
+      activity: this.data.activity
     })
   },
 
   onChangeStartTime(e) {
+    this.data.activity.startTime = e.detail.value
     this.setData({
-      startTime: e.detail.value
+      activity: this.data.activity
     })
   },
+
   onChangeEndDate(e) {
+    this.data.activity.endDate = e.detail.value
     this.setData({
-      endDate: e.detail.value
+      activity: this.data.activity
     })
   },
 
   onChangeEndTime(e) {
+    this.data.activity.endTime = e.detail.value
     this.setData({
-      endTime: e.detail.value
+      activity: this.data.activity
     })
   },
+
   onChangeDeadlineDate(e) {
+    this.data.activity.deadlineDate = e.detail.value
     this.setData({
-      deadlineDate: e.detail.value
+      activity: this.data.activity
     })
   },
 
   onChangeDeadlineTime(e) {
+    this.data.activity.deadlineTime = e.detail.value
     this.setData({
-      deadlineTime: e.detail.value
+      activity: this.data.activity
     })
   },
 
   onChooseLocation() {
-    let self = this
     wx.chooseLocation({
-      success: function(res) {
-        self.setData({
-          location: res
+      success: res => {
+        this.data.activity.location = res
+        this.setData({
+          activity: this.data.activity
         })
       },
     })
   },
 
   onChangeMaxCount(e) {
-    this.data.maxCount = e.detail.value
+    this.data.activity.maxCount = e.detail.value
   },
 
   onCreateActivity(e) {
@@ -98,7 +96,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     wx.getUserInfo({
       success: res => {
         this.setData({
@@ -111,49 +109,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

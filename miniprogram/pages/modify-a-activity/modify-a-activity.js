@@ -5,7 +5,7 @@ Page({
    */
   data: {
     userInfo: null,
-    activity: null
+    activity: {}
   },
 
   onGetUserInfo(e) {
@@ -15,66 +15,74 @@ Page({
   },
 
   onChangeTitle(e) {
-    this.data.title = e.detail.value
+    this.data.activity.title = e.detail.value
   },
 
   onChangeDescription(e) {
-    this.data.description = e.detail.value
+    this.data.activity.description = e.detail.value
   },
 
   onChangeStartDate(e) {
+    this.data.activity.startDate = e.detail.value
     this.setData({
-      startDate: e.detail.value
+      activity: this.data.activity
     })
   },
 
   onChangeStartTime(e) {
+    this.data.activity.startTime = e.detail.value
     this.setData({
-      startTime: e.detail.value
+      activity: this.data.activity
     })
   },
+
   onChangeEndDate(e) {
+    this.data.activity.endDate = e.detail.value
     this.setData({
-      endDate: e.detail.value
+      activity: this.data.activity
     })
   },
 
   onChangeEndTime(e) {
+    this.data.activity.endTime = e.detail.value
     this.setData({
-      endTime: e.detail.value
+      activity: this.data.activity
     })
   },
+
   onChangeDeadlineDate(e) {
+    this.data.activity.deadlineDate = e.detail.value
     this.setData({
-      deadlineDate: e.detail.value
+      activity: this.data.activity
     })
   },
 
   onChangeDeadlineTime(e) {
+    this.data.activity.deadlineTime = e.detail.value
     this.setData({
-      deadlineTime: e.detail.value
+      activity: this.data.activity
     })
   },
 
   onChooseLocation() {
-    let self = this
     wx.chooseLocation({
-      success: function(res) {
-        self.setData({
-          location: res
+      success: res => {
+        this.data.activity.location = res
+        this.setData({
+          activity: this.data.activity
         })
       },
     })
   },
 
   onChangeMaxCount(e) {
-    this.data.maxCount = e.detail.value
+    this.data.activity.maxCount = e.detail.value
   },
 
   onModifyActivity(e) {
     const res = wx.cloud.callFunction({
       name: 'modify-a-activity',
-      data: this.data.activity,
+      data: this.data,
       success: res => {
         switch (res.errMsg) {
           case "cloud.callFunction:ok":
@@ -106,11 +114,6 @@ Page({
         this.setData({
           activity: res.result
         })
-        console.log("成功")
-        console.log(res)
-      },
-      fail: res => {
-        console.log("失败" + res)
       }
     })
   },
