@@ -12,6 +12,7 @@
     <mp-cell>
       <view>
         <mp-icon icon="time" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
+        <text>时间</text>
       </view>
       <view>
         <view style="padding:10rpx;">
@@ -26,7 +27,7 @@
             <picker mode="time" bindchange="onChangeStartTime">
               <view class="editable" style="margin:0rpx 10rpx;">
                 <block wx:if="{{activity.startTime}}">{{activity.startTime}}</block>
-                <block wx:else>时间</block>
+                <block wx:else>时分</block>
               </view>
             </picker>
           </view>
@@ -43,7 +44,7 @@
             <picker mode="time" bindchange="onChangeEndTime">
               <view class="editable" style="margin:0rpx 10rpx;">
                 <block wx:if="{{activity.endTime}}">{{activity.endTime}}</block>
-                <block wx:else>时间</block>
+                <block wx:else>时分</block>
               </view>
             </picker>
           </view>
@@ -60,7 +61,7 @@
             <picker mode="time" bindchange="onChangeDeadlineTime">
               <view class="editable" style="margin:0rpx 10rpx;">
                 <block wx:if="{{activity.deadlineTime}}">{{activity.deadlineTime}}</block>
-                <block wx:else>时间</block>
+                <block wx:else>时分</block>
               </view>
             </picker>
           </view>
@@ -70,9 +71,9 @@
     <mp-cell bind:tap="onChooseLocation">
       <view>
         <mp-icon icon="location" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
+        <text>地点</text>
       </view>
       <view>
-        <text>地点</text>
         <view wx:if="{{!activity.location}}" class="editable">定位</view>
         <block wx:else>
           <view class="editable" style="font-weight: bold;">
@@ -87,12 +88,14 @@
     <mp-cell>
       <view>
         <mp-icon icon="group-detail" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
+        <text>人数限制</text>
       </view>
       <view>
-        <text>人数限制</text>
         <input type="number" placeholder="不限" value="{{activity.maxCount}}" bindblur="onChangeMaxCount" class="editable" />
       </view>
     </mp-cell>
   </mp-cells>
-  <button type="primary" bindtap="onModifyActivity" style="margin-bottom:40rpx;">修改活动</button>
+  <view style="margin:40rpx 0rpx;">
+    <button type="primary" bindtap="onModifyActivity">修改活动</button>
+  </view>
 </view>

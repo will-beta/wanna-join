@@ -1,4 +1,10 @@
 {
   "navigationBarTitleText": "活动信息",
-  "usingComponents": {}
+  "usingComponents": {
+    "mp-cell": "../../miniprogram_npm/weui-miniprogram/cell/cell",
+    "mp-cells": "../../miniprogram_npm/weui-miniprogram/cells/cells",
+    "mp-icon": "../../miniprogram_npm/weui-miniprogram/icon/icon",
+    "login": "../../components/login/login",
+    "mp-halfScreenDialog": "../../miniprogram_npm/weui-miniprogram/half-screen-dialog/half-screen-dialog"
+  }
 }

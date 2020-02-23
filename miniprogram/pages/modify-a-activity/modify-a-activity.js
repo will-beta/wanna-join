@@ -5,7 +5,8 @@ Page({
    */
   data: {
     userInfo: null,
-    activity: {}
+    activity: {},
+    activityId: null
   },
 
   onGetUserInfo(e) {
@@ -97,22 +98,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.data.activityId = options._id
+
     wx.getUserInfo({
       success: res => {
         this.setData({
           userInfo: res.userInfo
-        })
-      }
-    })
-
-    wx.cloud.callFunction({
-      name: 'show-a-activity',
-      data: {
-        _id: options._id
-      },
-      success: res => {
-        this.setData({
-          activity: res.result
         })
       }
     })
@@ -129,7 +120,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    wx.cloud.callFunction({
+      name: 'show-a-activity',
+      data: {
+        _id: this.data.activityId
+      },
+      success: res => {
+        this.setData({
+          activity: res.result
+        })
+      }
+    })
   },
 
   /**

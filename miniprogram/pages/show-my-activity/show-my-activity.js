@@ -5,21 +5,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-    myActivity: null
+    userInfo: null,
+    myActivity: null,
+    myActivityId: null,
+    showDialog: false
+  },
+
+  onGetUserInfo(e) {
+    this.setData({
+      userInfo: e.detail
+    })
+  },
+
+  onTagToShowDialog() {
+    this.setData({
+      showDialog: true
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    wx.cloud.callFunction({
-      name: 'show-my-activity',
-      data: {
-        _id: options._id
-      },
+    this.data.myActivityId = options._id
+
+    wx.getUserInfo({
       success: res => {
         this.setData({
-          myActivity: res.result
+          userInfo: res.userInfo
         })
       }
     })
@@ -36,7 +49,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    wx.cloud.callFunction({
+      name: 'show-my-activity',
+      data: {
+        _id: this.data.myActivityId
+      },
+      success: res => {
+        this.setData({
+          myActivity: res.result
+        })
+      }
+    })
   },
 
   /**
