@@ -81,7 +81,7 @@ Page({
 
   onCreateActivity(e) {
     const res = wx.cloud.callFunction({
-      name: 'create-a-activity',
+      name: 'create-an-activity',
       data: this.data,
       success: res => {
         switch (res.errMsg) {

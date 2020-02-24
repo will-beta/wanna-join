@@ -6,7 +6,7 @@
     <block wx:if="{{enrollments.length>0}}">
       <mp-cells>
         <block wx:for="{{enrollments}}" wx:key="index" wx:for-item="enrollment">
-          <navigator url="{{'/pages/show-a-enrollment/show-a-enrollment?activityId='+enrollment.activityId}}">
+          <navigator url="{{'/pages/show-my-enrollment/show-my-enrollment?activityId='+enrollment.activityId}}">
             <mp-slideview buttons="{{slideButtons}}" bindbuttontap="onSlideButtonTap" data-key="{{enrollment._id}}">
               <mp-cell>
                 <view>
@@ -38,7 +38,7 @@
     <view wx:else style="color:lightgrey">无活动</view>
   </scroll-view>
   <view style="position:fixed; bottom:10%; right:5%;">
-    <navigator url="/pages/create-a-activity/create-a-activity">
+    <navigator url="/pages/create-an-activity/create-an-activity">
       <mp-icon type="field" icon="add2" color="#333" size="{{50}}">
       </mp-icon>
     </navigator>

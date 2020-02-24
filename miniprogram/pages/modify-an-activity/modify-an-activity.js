@@ -83,7 +83,7 @@ Page({
 
   onModifyActivity(e) {
     const res = wx.cloud.callFunction({
-      name: 'modify-a-activity',
+      name: 'modify-an-activity',
       data: this.data,
       success: res => {
         switch (res.errMsg) {
@@ -110,7 +110,7 @@ Page({
     })
 
     wx.cloud.callFunction({
-      name: 'show-a-activity',
+      name: 'show-an-activity',
       data: {
         _id: this.data.activityId
       },

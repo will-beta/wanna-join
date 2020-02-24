@@ -6,9 +6,9 @@
   },
   "pages": [
     "pages/list-my-enrollments/list-my-enrollments",
-    "pages/show-a-enrollment/show-a-enrollment",
-    "pages/create-a-activity/create-a-activity",
-    "pages/modify-a-activity/modify-a-activity"
+    "pages/show-my-enrollment/show-my-enrollment",
+    "pages/create-an-activity/create-an-activity",
+    "pages/modify-an-activity/modify-an-activity"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

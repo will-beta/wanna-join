@@ -56,7 +56,7 @@
         </view>
       </view>
     </mp-cell>
-    <mp-cell wx:if="{{!activity.location}}" bind:tap="onOpenLocation">
+    <mp-cell wx:if="{{activity.location}}" bind:tap="onOpenLocation">
       <view>
         <mp-icon icon="location" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
         <text>地点</text>
@@ -81,11 +81,11 @@
     </mp-cell>
   </mp-cells>
   <view style="margin:40rpx 0rpx;">
-    <navigator wx:if="{{enrollment._createdBy==activity._createdBy}}" url="{{'/pages/modify-a-activity/modify-a-activity?_id='+activity._id}}">
-      <button type="primary" style="margin-bottom:40rpx;">修改</button>
+    <navigator wx:if="{{enrollment._createdBy==activity._createdBy}}" url="{{'/pages/modify-an-activity/modify-an-activity?_id='+activity._id}}">
+      <button type="primary" style="margin-bottom:40rpx;">修改活动信息</button>
     </navigator>
-    <button wx:if="{{enrollment.status!='已报名'}}" type="primary" bindtap="onTapToEnroll">报名</button>
-    <button wx:if="{{enrollment.status=='已报名'}}" type="default" bindtap="onTapToCancel">取消报名</button>
+    <button wx:if="{{enrollment.status!='已报名'}}" type="primary" bindtap="onTapToEnroll">报名活动</button>
+    <button wx:if="{{enrollment.status=='已报名'}}" type="default" bindtap="onTapToCancel">取消报名活动</button>
   </view>
   <mp-halfScreenDialog show="{{showDialog}}" title="测试标题B" subTitle="测试标题B的副标题" desc="辅助描述内容，可根据实际需要安排" tips="辅助提示内容，可根据实际需要安排" buttons="{{buttons}}"></mp-halfScreenDialog>
 </view>
