@@ -6,11 +6,24 @@ Page({
   data: {
     userInfo: null,
     enrollments: null,
-    forceRefreshEnrollments: false,
+    forceRefreshDataFromServer: false,
     slideButtons: [{
       type: "warn",
       text: "删除"
     }]
+  },
+
+  refreshDataFromServer() {
+    wx.cloud.callFunction({
+      name: 'list-my-enrollments',
+      success: res => {
+        this.setData({
+          enrollments: res.result
+        })
+      }
+    })
+
+    this.forceRefreshDataFromServer = false
   },
 
   onGetUserInfo(e) {
@@ -27,22 +40,9 @@ Page({
         _id: e.currentTarget.dataset.key
       },
       success: () => {
-        self.refreshEnrollments()
+        self.refreshDataFromServer()
       }
     })
-  },
-
-  refreshEnrollments() {
-    wx.cloud.callFunction({
-      name: 'list-my-enrollments',
-      success: res => {
-        this.setData({
-          enrollments: res.result
-        })
-      }
-    })
-
-    this.forceRefreshEnrollments = false
   },
 
   /**
@@ -57,7 +57,7 @@ Page({
       }
     })
 
-    this.refreshEnrollments()
+    this.refreshDataFromServer()
   },
 
   /**
@@ -71,15 +71,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (this.forceRefreshEnrollments)
-      this.refreshEnrollments()
+    if (this.forceRefreshDataFromServer)
+      this.refreshDataFromServer()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    this.forceRefreshEnrollments = true
+    this.forceRefreshDataFromServer = true
   },
 
   /**
@@ -93,7 +93,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    this.refreshEnrollments()
+    this.refreshDataFromServer()
   },
 
   /**

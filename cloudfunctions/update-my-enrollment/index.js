@@ -5,17 +5,15 @@ cloud.init()
 
 // 云函数入口函数
 exports.main = async(event, context) => {
-  const wxContext = cloud.getWXContext()
-  const db = cloud.database()
-
-  const data = Object.assign({}, event.activity, {
+  const data = Object.assign({}, event, {
     _modifiedAt: new Date()
   })
   delete data._id
 
+  const db = cloud.database()
   await db
-    .collection('activities')
-    .doc(event.activity._id)
+    .collection('enrollments')
+    .doc(event._id)
     .update({
       data: data
     })

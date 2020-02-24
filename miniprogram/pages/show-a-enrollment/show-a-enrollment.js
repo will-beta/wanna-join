@@ -5,10 +5,26 @@ Page({
    */
   data: {
     userInfo: null,
-    enrollment: null,
-    activity: null,
     activityId: null,
-    showDialog: false
+    enrollment: null,
+    activity: null
+  },
+
+  refreshDataFromServer() {
+    wx.cloud.callFunction({
+      name: 'show-my-enrollment',
+      data: {
+        activityId: this.data.activityId
+      },
+      success: res => {
+        this.setData({
+          enrollment: res.result.enrollment,
+          activity: res.result.activity
+        })
+      }
+    })
+
+    this.forceRefreshDataFromServer = false
   },
 
   onGetUserInfo(e) {
@@ -26,9 +42,31 @@ Page({
     })
   },
 
-  onTagToShowDialog() {
-    this.setData({
-      showDialog: true
+  onTapToEnroll() {
+    self = this
+    wx.cloud.callFunction({
+      name: 'update-my-enrollment',
+      data: {
+        _id: this.data.enrollment._id,
+        status: '已报名'
+      },
+      success: res => {
+        self.refreshDataFromServer()
+      }
+    })
+  },
+
+  onTapToCancel() {
+    self = this
+    wx.cloud.callFunction({
+      name: 'update-my-enrollment',
+      data: {
+        _id: this.data.enrollment._id,
+        status: '已取消'
+      },
+      success: res => {
+        self.refreshDataFromServer()
+      }
     })
   },
 
@@ -45,6 +83,8 @@ Page({
         })
       }
     })
+
+    this.refreshDataFromServer()
   },
 
   /**
@@ -58,25 +98,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    wx.cloud.callFunction({
-      name: 'show-my-enrollment',
-      data: {
-        activityId: this.data.activityId
-      },
-      success: res => {
-        this.setData({
-          enrollment: res.result.enrollment,
-          activity: res.result.activity
-        })
-      }
-    })
+    if (this.forceRefreshDataFromServer)
+      this.refreshDataFromServer()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    this.forceRefreshDataFromServer = true
   },
 
   /**
@@ -90,7 +120,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    this.refreshDataFromServer()
   },
 
   /**
@@ -104,9 +134,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-    this.setData({
-      enrollment: this.data.enrollment,
-      activity: this.data.activity
-    })
+
   }
 })

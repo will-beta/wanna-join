@@ -84,7 +84,8 @@
     <navigator wx:if="{{enrollment._createdBy==activity._createdBy}}" url="{{'/pages/modify-a-activity/modify-a-activity?_id='+activity._id}}">
       <button type="primary" style="margin-bottom:40rpx;">修改</button>
     </navigator>
-    <button type="primary" bindtap="onTagToShowDialog">报名</button>
+    <button wx:if="{{enrollment.status!='已报名'}}" type="primary" bindtap="onTapToEnroll">报名</button>
+    <button wx:if="{{enrollment.status=='已报名'}}" type="default" bindtap="onTapToCancel">取消报名</button>
   </view>
   <mp-halfScreenDialog show="{{showDialog}}" title="测试标题B" subTitle="测试标题B的副标题" desc="辅助描述内容，可根据实际需要安排" tips="辅助提示内容，可根据实际需要安排" buttons="{{buttons}}"></mp-halfScreenDialog>
 </view>

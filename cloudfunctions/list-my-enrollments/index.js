@@ -24,11 +24,11 @@ exports.main = async(event, context) => {
     .end()
 
   const data = enrollments.list.map(a => {
-    Object.assign(a, {
+    let d = Object.assign({}, a, {
       activity: a.activities[0]
     })
-    delete a.activities
-    return a
+    delete d.activities
+    return d
   })
 
   return data
