@@ -21,9 +21,15 @@ Page({
   },
 
   onSlideButtonTap(e) {
-    this.data.myActivities.splice(e.currentTarget.dataset.index, 1)
-    this.setData({
-      myActivities: this.data.myActivities
+    self = this
+    wx.cloud.callFunction({
+      name: 'delete-my-activity',
+      data: {
+        _id: e.currentTarget.dataset.key
+      },
+      success: () => {
+        self.refreshMyActivities()
+      }
     })
   },
 

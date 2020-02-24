@@ -7,10 +7,14 @@ cloud.init()
 exports.main = async(event, context) => {
   const wxContext = cloud.getWXContext()
   const db = cloud.database()
+  const _ = db.command
 
   const myActivities = await db
     .collection('my-activities')
     .aggregate()
+    .match({
+      deleted: _.neq(true)
+    })
     .lookup({
       from: "activities",
       localField: "activityId",

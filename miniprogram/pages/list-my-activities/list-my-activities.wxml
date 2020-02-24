@@ -7,7 +7,7 @@
       <mp-cells>
         <block wx:for="{{myActivities}}" wx:key="index" wx:for-item="myActivity">
           <navigator url="{{'/pages/show-my-activity/show-my-activity?_id='+myActivity._id}}">
-            <mp-slideview buttons="{{slideButtons}}" bindbuttontap="onSlideButtonTap" data-index="{{index}}" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-index="{{index}}">
+            <mp-slideview buttons="{{slideButtons}}" bindbuttontap="onSlideButtonTap" data-key="{{myActivity._id}}">
               <mp-cell>
                 <view>
                   <view class="row">
