@@ -3,32 +3,32 @@
 </view>
 <view wx:else>
   <scroll-view scroll-y="true" style="position:fixed; height:100%;">
-    <block wx:if="{{myActivities.length>0}}">
+    <block wx:if="{{enrollments.length>0}}">
       <mp-cells>
-        <block wx:for="{{myActivities}}" wx:key="index" wx:for-item="myActivity">
-          <navigator url="{{'/pages/show-my-activity/show-my-activity?_id='+myActivity._id}}">
-            <mp-slideview buttons="{{slideButtons}}" bindbuttontap="onSlideButtonTap" data-key="{{myActivity._id}}">
+        <block wx:for="{{enrollments}}" wx:key="index" wx:for-item="enrollment">
+          <navigator url="{{'/pages/show-a-enrollment/show-a-enrollment?activityId='+enrollment.activityId}}">
+            <mp-slideview buttons="{{slideButtons}}" bindbuttontap="onSlideButtonTap" data-key="{{enrollment._id}}">
               <mp-cell>
                 <view>
                   <view class="row">
                     <mp-icon icon="text" size="{{20}}"></mp-icon>
-                    <text wx:if="{{myActivity.activity.title}}" style="font-weight:bold; font-size:large;">{{myActivity.activity.title}}</text>
+                    <text wx:if="{{enrollment.activity.title}}" style="font-weight:bold; font-size:large;">{{enrollment.activity.title}}</text>
                   </view>
                   <view class="row">
                     <mp-icon icon="me" size="{{20}}"></mp-icon>
-                    <text wx:if="{{myActivity.activity.userInfo.nickName}}">{{myActivity.activity.userInfo.nickName}}</text>
+                    <text wx:if="{{enrollment.activity.userInfo.nickName}}">{{enrollment.activity.userInfo.nickName}}</text>
                   </view>
                   <view class="row">
                     <mp-icon icon="time" size="{{20}}"></mp-icon>
-                    <text>{{myActivity.activity.startDate}}</text>
-                    <text>{{myActivity.activity.startTime}}</text>
+                    <text>{{enrollment.activity.startDate}}</text>
+                    <text>{{enrollment.activity.startTime}}</text>
                   </view>
                   <view class="row">
                     <mp-icon icon="location" size="{{20}}"></mp-icon>
-                    <text wx:if="{{myActivity.activity.location.name}}">{{myActivity.activity.location.name}}</text>
+                    <text wx:if="{{enrollment.activity.location.name}}">{{enrollment.activity.location.name}}</text>
                   </view>
                 </view>
-                <view slot="footer">{{myActivity.status}}</view>
+                <view slot="footer">{{enrollment.status}}</view>
               </mp-cell>
             </mp-slideview>
           </navigator>

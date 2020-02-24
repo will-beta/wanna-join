@@ -8,7 +8,7 @@ exports.main = async(event, context) => {
   const db = cloud.database()
 
   await db
-    .collection('my-activities')
+    .collection('enrollments')
     .doc(event._id)
     .update({
       data: {

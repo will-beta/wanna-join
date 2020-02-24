@@ -1,4 +1,3 @@
-// miniprogram/pages/list-my-activities/list-my-activities.js
 Page({
 
   /**
@@ -6,8 +5,8 @@ Page({
    */
   data: {
     userInfo: null,
-    myActivities: null,
-    forceRefreshMyActivities: false,
+    enrollments: null,
+    forceRefreshEnrollments: false,
     slideButtons: [{
       type: "warn",
       text: "删除"
@@ -23,27 +22,27 @@ Page({
   onSlideButtonTap(e) {
     self = this
     wx.cloud.callFunction({
-      name: 'delete-my-activity',
+      name: 'delete-my-enrollment',
       data: {
         _id: e.currentTarget.dataset.key
       },
       success: () => {
-        self.refreshMyActivities()
+        self.refreshEnrollments()
       }
     })
   },
 
-  refreshMyActivities() {
+  refreshEnrollments() {
     wx.cloud.callFunction({
-      name: 'list-my-activities',
+      name: 'list-my-enrollments',
       success: res => {
         this.setData({
-          myActivities: res.result
+          enrollments: res.result
         })
       }
     })
 
-    this.forceRefreshMyActivities = false
+    this.forceRefreshEnrollments = false
   },
 
   /**
@@ -58,7 +57,7 @@ Page({
       }
     })
 
-    this.refreshMyActivities()
+    this.refreshEnrollments()
   },
 
   /**
@@ -72,15 +71,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (this.forceRefreshMyActivities)
-      this.refreshMyActivities()
+    if (this.forceRefreshEnrollments)
+      this.refreshEnrollments()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    this.forceRefreshMyActivities = true
+    this.forceRefreshEnrollments = true
   },
 
   /**
@@ -94,7 +93,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    this.refreshMyActivities()
+    this.refreshEnrollments()
   },
 
   /**

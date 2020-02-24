@@ -19,7 +19,7 @@ exports.main = async(event, context) => {
     })
 
   await db
-    .collection('my-activities')
+    .collection('enrollments')
     .add({
       data: {
         _createdAt: new Date(),

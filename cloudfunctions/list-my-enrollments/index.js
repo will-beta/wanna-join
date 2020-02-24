@@ -9,8 +9,8 @@ exports.main = async(event, context) => {
   const db = cloud.database()
   const _ = db.command
 
-  const myActivities = await db
-    .collection('my-activities')
+  const enrollments = await db
+    .collection('enrollments')
     .aggregate()
     .match({
       deleted: _.neq(true)
@@ -23,7 +23,7 @@ exports.main = async(event, context) => {
     })
     .end()
 
-  const data = myActivities.list.map(a => {
+  const data = enrollments.list.map(a => {
     Object.assign(a, {
       activity: a.activities[0]
     })

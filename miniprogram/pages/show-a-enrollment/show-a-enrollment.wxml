@@ -1,4 +1,7 @@
-<template name="main">
+<view wx:if="{{!userInfo}}">
+  <login bind:getUserInfo="onGetUserInfo"></login>
+</view>
+<view wx:else>
   <mp-cells>
     <mp-cell>
       <input type="text" placeholder="活动标题" value="{{activity.title}}" class="editable" bindblur="onChangeTitle" />
@@ -92,15 +95,8 @@
       </view>
     </mp-cell>
   </mp-cells>
-</template>
-
-<view wx:if="{{!userInfo}}">
-  <login bind:getUserInfo="onGetUserInfo"></login>
-</view>
-<view wx:else>
-  <template is="main" data="{{...myActivity}}"></template>
   <view style="margin:40rpx 0rpx;">
-    <navigator wx:if="{{myActivity._createdBy==myActivity.activity._createdBy}}" url="{{'/pages/modify-a-activity/modify-a-activity?_id='+myActivity.activity._id}}">
+    <navigator wx:if="{{enrollment._createdBy==activity._createdBy}}" url="{{'/pages/modify-a-activity/modify-a-activity?_id='+activity._id}}">
       <button type="primary" style="margin-bottom:40rpx;">修改</button>
     </navigator>
     <button type="primary" bindtap="onTagToShowDialog">报名</button>

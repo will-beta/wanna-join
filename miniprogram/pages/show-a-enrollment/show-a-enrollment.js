@@ -1,4 +1,3 @@
-// miniprogram/pages/show-a-activity/show-a-activity.js
 Page({
 
   /**
@@ -6,8 +5,9 @@ Page({
    */
   data: {
     userInfo: null,
-    myActivity: null,
-    myActivityId: null,
+    enrollment: null,
+    activity: null,
+    activityId: null,
     showDialog: false
   },
 
@@ -27,7 +27,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.data.myActivityId = options._id
+    this.data.activityId = options.activityId
 
     wx.getUserInfo({
       success: res => {
@@ -50,13 +50,14 @@ Page({
    */
   onShow: function() {
     wx.cloud.callFunction({
-      name: 'show-my-activity',
+      name: 'show-my-enrollment',
       data: {
-        _id: this.data.myActivityId
+        activityId: this.data.activityId
       },
       success: res => {
         this.setData({
-          myActivity: res.result
+          enrollment: res.result.enrollment,
+          activity: res.result.activity
         })
       }
     })
@@ -95,7 +96,7 @@ Page({
    */
   onShareAppMessage: function() {
     this.setData({
-      myActivity: this.data.myActivity
+      enrollment: this.data.enrollment
     })
   }
 })
