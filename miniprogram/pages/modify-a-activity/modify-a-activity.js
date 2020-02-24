@@ -78,6 +78,7 @@ Page({
 
   onChangeMaxCount(e) {
     this.data.activity.maxCount = e.detail.value
+    console.log(this.data)
   },
 
   onModifyActivity(e) {
@@ -107,6 +108,18 @@ Page({
         })
       }
     })
+
+    wx.cloud.callFunction({
+      name: 'show-a-activity',
+      data: {
+        _id: this.data.activityId
+      },
+      success: res => {
+        this.setData({
+          activity: res.result
+        })
+      }
+    })
   },
 
   /**
@@ -120,17 +133,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    wx.cloud.callFunction({
-      name: 'show-a-activity',
-      data: {
-        _id: this.data.activityId
-      },
-      success: res => {
-        this.setData({
-          activity: res.result
-        })
-      }
-    })
+
   },
 
   /**

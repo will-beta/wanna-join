@@ -17,6 +17,15 @@ Page({
     })
   },
 
+  onOpenLocation() {
+    const latitude = this.data.activity.location.latitude
+    const longitude = this.data.activity.location.longitude
+    wx.openLocation({
+      latitude,
+      longitude
+    })
+  },
+
   onTagToShowDialog() {
     this.setData({
       showDialog: true
@@ -96,7 +105,8 @@ Page({
    */
   onShareAppMessage: function() {
     this.setData({
-      enrollment: this.data.enrollment
+      enrollment: this.data.enrollment,
+      activity: this.data.activity
     })
   }
 })
