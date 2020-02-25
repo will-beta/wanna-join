@@ -13,10 +13,20 @@ Page({
     }]
   },
 
+  observers: {
+    'numberA, numberB': function(numberA, numberB) {
+      // 在 numberA 或者 numberB 被设置时，执行这个函数
+      this.setData({
+        sum: numberA + numberB
+      })
+    }
+  },
+
   refreshDataFromServer() {
     wx.cloud.callFunction({
       name: 'list-my-enrollments',
       success: res => {
+        console.log(res)
         this.setData({
           enrollments: res.result
         })

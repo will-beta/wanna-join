@@ -9,26 +9,25 @@
           <navigator url="{{'/pages/show-my-enrollment/show-my-enrollment?activityId='+enrollment.activityId}}">
             <mp-slideview buttons="{{slideButtons}}" bindbuttontap="onSlideButtonTap" data-key="{{enrollment._id}}">
               <mp-cell>
-                <view>
-                  <view class="row">
-                    <mp-icon icon="text" size="{{20}}"></mp-icon>
-                    <text wx:if="{{enrollment.activity.title}}" style="font-weight:bold; font-size:large;">{{enrollment.activity.title}}</text>
+                <view style="display:flex;flex-direction:row;">
+                  <view>
+                    <image src="{{enrollment.userInfo.avatarUrl}}" style="width:150rpx;height:150rpx;"></image>
                   </view>
-                  <view class="row">
-                    <mp-icon icon="me" size="{{20}}"></mp-icon>
-                    <text wx:if="{{enrollment.activity.userInfo.nickName}}">{{enrollment.activity.userInfo.nickName}}</text>
-                  </view>
-                  <view class="row">
-                    <mp-icon icon="time" size="{{20}}"></mp-icon>
-                    <text>{{enrollment.activity.startDate}}</text>
-                    <text>{{enrollment.activity.startTime}}</text>
-                  </view>
-                  <view class="row">
-                    <mp-icon icon="location" size="{{20}}"></mp-icon>
-                    <text wx:if="{{enrollment.activity.location.name}}">{{enrollment.activity.location.name}}</text>
+                  <view style="padding:0rpx 20rpx;width:80%;">
+                    <view class="row">
+                      <text wx:if="{{enrollment.activity.title}}" style="font-size:large;">{{enrollment.activity.title}}</text>
+                    </view>
+                    <view class="row">
+                      <text>{{enrollment.activity.startDate}}</text>
+                      <text>{{enrollment.activity.startTime}}</text>
+                    </view>
+                    <view class="row">
+                      <text>{{enrollment.activity.weekday}}</text>
+                      <text>{{enrollment.activity.timespan}}</text>
+                    </view>
                   </view>
                 </view>
-                <view slot="footer">{{enrollment.status}}</view>
+                <view slot="footer" style="writing-mode:vertical-lr;padding:0rpx 20rpx;">{{enrollment.status}}</view>
               </mp-cell>
             </mp-slideview>
           </navigator>
