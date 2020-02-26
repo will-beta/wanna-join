@@ -10,11 +10,19 @@ exports.main = async(event, context) => {
   })
   delete data._id
 
-  const db = cloud.database()
-  await db
+  const collection = cloud
+    .database()
     .collection('enrollments')
-    .doc(event._id)
-    .update({
-      data: data
+  const docs = await collection
+    .where({
+      activityId: event.activityId
     })
+    .get()
+  for (doc of docs.data) {
+    await collection
+      .doc(doc._id)
+      .update({
+        data: data
+      })
+  }
 }

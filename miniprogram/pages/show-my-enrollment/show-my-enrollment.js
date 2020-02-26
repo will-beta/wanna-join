@@ -5,9 +5,10 @@ Page({
    */
   data: {
     userInfo: null,
-    activityId: null,
-    enrollment: null,
-    activity: null
+    activity: null,
+    enrollments: null,
+    me: null,
+    enrollmentStatus: null
   },
 
   refreshDataFromServer() {
@@ -18,8 +19,10 @@ Page({
       },
       success: res => {
         this.setData({
-          enrollment: res.result.enrollment,
-          activity: res.result.activity
+          activity: res.result.activity,
+          enrollments: res.result.enrollments,
+          me: res.result.me,
+          enrollmentStatus: res.result.enrollments.find(e => e._createdBy == res.result.me).status
         })
       }
     })
@@ -47,7 +50,7 @@ Page({
     wx.cloud.callFunction({
       name: 'update-my-enrollment',
       data: {
-        _id: this.data.enrollment._id,
+        activityId: this.data.activity._id,
         status: '已报名'
       },
       success: res => {
@@ -61,7 +64,7 @@ Page({
     wx.cloud.callFunction({
       name: 'update-my-enrollment',
       data: {
-        _id: this.data.enrollment._id,
+        activityId: this.data.activity._id,
         status: '已取消'
       },
       success: res => {

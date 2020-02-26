@@ -81,11 +81,22 @@
     </mp-cell>
   </mp-cells>
   <view style="margin:40rpx 0rpx;">
-    <navigator wx:if="{{enrollment._createdBy==activity._createdBy}}" url="{{'/pages/modify-an-activity/modify-an-activity?_id='+activity._id}}">
+    <navigator wx:if="{{activity._createdBy == me}}" url="{{'/pages/modify-an-activity/modify-an-activity?_id='+activity._id}}">
       <button type="primary" style="margin-bottom:40rpx;">修改活动信息</button>
     </navigator>
-    <button wx:if="{{enrollment.status!='已报名'}}" type="primary" bindtap="onTapToEnroll">报名活动</button>
-    <button wx:if="{{enrollment.status=='已报名'}}" type="default" bindtap="onTapToCancel">取消报名活动</button>
+    <button wx:if="{{enrollmentStatus!='已报名'}}" type="primary" bindtap="onTapToEnroll">报名活动</button>
+    <button wx:if="{{enrollmentStatus=='已报名'}}" type="default" bindtap="onTapToCancel">取消报名活动</button>
   </view>
-  <mp-halfScreenDialog show="{{showDialog}}" title="测试标题B" subTitle="测试标题B的副标题" desc="辅助描述内容，可根据实际需要安排" tips="辅助提示内容，可根据实际需要安排" buttons="{{buttons}}"></mp-halfScreenDialog>
+  <view>
+    <mp-cells title="报名成员">
+      <mp-cell wx:for="{{enrollments}}" wx:key="index" wx:for-item="enrollment">
+        <view style="display:flex;flex-direction:row;">
+          <text style="display:flex;align-items:center;;padding-right:20rpx;">{{index+1}}</text>
+          <image src="{{enrollment.userInfo.avatarUrl}}" style="width:150rpx;height:150rpx;"></image>
+          <text style="display:flex;align-items:center;;padding:0rpx 20rpx;">{{enrollment.userInfo.nickName}}</text>
+        </view>
+        <view slot="footer" style="writing-mode:vertical-lr;padding:0rpx 20rpx;">{{enrollment.status}}</view>
+      </mp-cell>
+    </mp-cells>
+  </view>
 </view>
