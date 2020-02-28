@@ -20,8 +20,13 @@ Page({
       success: res => {
         this.setData({
           activity: res.result.activity,
-          enrollments: res.result.enrollments,
+          enrollments: res.result.enrollments.map(e => {
+            const t = new Date(e._modifiedAt || e._createdAt)
+            e.lastDateTime = (t.getMonth() + 1).toString().padStart(2, '0') + '-' + t.getDate().toString().padStart(2, '0') + ' ' + t.getHours().toString().padStart(2, '0') + ':' + t.getMinutes().toString().padStart(2, '0')
+            return e
+          }),
           me: res.result.me,
+          isOverdue: res.result.isOverdue,
           enrollmentStatus: res.result.enrollments.find(e => e._createdBy == res.result.me).status
         })
       }

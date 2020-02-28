@@ -28,5 +28,9 @@ exports.main = async(event, context) => {
     enrollments: enrollments.data,
     me: wxContext.OPENID
   }
+  if (data.activity.deadlineDate) {
+    const deadline = new Date(data.activity.deadlineTime ? [data.activity.deadlineDate, data.activity.deadlineTime].join(' ') : data.activity.deadlineDate)
+    data.isOverdue = new Date() > deadline
+  }
   return data
 }

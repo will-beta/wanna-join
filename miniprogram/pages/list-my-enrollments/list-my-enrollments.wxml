@@ -17,8 +17,8 @@
                     <view class="row">
                       <text wx:if="{{enrollment.activity.title}}" style="font-size:large;">{{enrollment.activity.title}}</text>
                     </view>
-                    <view class="row">
-                      <text>{{enrollment.activity.startDate}}</text>
+                    <view>
+                      <text style="margin-right:15rpx;">{{enrollment.activity.startDate}}</text>
                       <text>{{enrollment.activity.startTime}}</text>
                     </view>
                     <view class="row">

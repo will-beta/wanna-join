@@ -12,10 +12,10 @@
     <mp-cell wx:if="{{activity.startDate||activity.startTime||activity.endDate||activity.endTime||activity.deadlineDate||activity.deadlineTime}}">
       <view>
         <mp-icon icon="time" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
-        <text>时间</text>
+        <text style="color:grey;">时间</text>
       </view>
       <view>
-        <view style="padding:10rpx;">
+        <view style="padding:10rpx;" wx:if="{{activity.startDate||activity.startTime}}">
           <text>开始于</text>
           <view style="display:flex; flex-direction:row;">
             <view style="margin:0rpx 10rpx;">
@@ -28,7 +28,7 @@
             </view>
           </view>
         </view>
-        <view style="padding:10rpx;">
+        <view style="padding:10rpx;" wx:if="{{activity.endDate||activity.endTime}}">
           <text>结束于</text>
           <view style="display:flex; flex-direction:row;">
             <view style="margin:0rpx 10rpx;">
@@ -41,7 +41,7 @@
             </view>
           </view>
         </view>
-        <view style="padding:10rpx;">
+        <view style="padding:10rpx;" wx:if="{{activity.deadlineDate||activity.deadlineTime}}">
           <text>报名截止于</text>
           <view style="display:flex; flex-direction:row;">
             <view style="margin:0rpx 10rpx;">
@@ -59,7 +59,7 @@
     <mp-cell wx:if="{{activity.location}}" bind:tap="onOpenLocation">
       <view>
         <mp-icon icon="location" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
-        <text>地点</text>
+        <text style="color:grey;">地点</text>
       </view>
       <view>
         <view style="font-weight: bold;">
@@ -73,19 +73,21 @@
     <mp-cell wx:if="{{activity.maxCount!=null}}">
       <view>
         <mp-icon icon="group-detail" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
-        <text>人数限制</text>
+        <text style="color:grey;">人数限制</text>
       </view>
       <view>
         <text>{{activity.maxCount}}</text>
       </view>
     </mp-cell>
   </mp-cells>
-  <view style="margin:40rpx 0rpx;">
+  <view style="padding:40rpx 0rpx;border:2px solid #eee;">
     <navigator wx:if="{{activity._createdBy == me}}" url="{{'/pages/modify-an-activity/modify-an-activity?_id='+activity._id}}">
       <button type="primary" style="margin-bottom:40rpx;">修改活动信息</button>
     </navigator>
-    <button wx:if="{{enrollmentStatus!='已报名'}}" type="primary" bindtap="onTapToEnroll">报名活动</button>
-    <button wx:if="{{enrollmentStatus=='已报名'}}" type="default" bindtap="onTapToCancel">取消报名活动</button>
+    <block wx:if="{{!isOverdue}}">
+      <button wx:if="{{enrollmentStatus!='已报名'}}" type="primary" bindtap="onTapToEnroll">报名</button>
+      <button wx:if="{{enrollmentStatus=='已报名'}}" type="default" bindtap="onTapToCancel">取消报名</button>
+    </block>
   </view>
   <view>
     <mp-cells title="报名成员">
@@ -95,7 +97,10 @@
           <image src="{{enrollment.userInfo.avatarUrl}}" style="width:150rpx;height:150rpx;"></image>
           <text style="display:flex;align-items:center;;padding:0rpx 20rpx;">{{enrollment.userInfo.nickName}}</text>
         </view>
-        <view slot="footer" style="writing-mode:vertical-lr;padding:0rpx 20rpx;">{{enrollment.status}}</view>
+        <view slot="footer" style="padding:0rpx 20rpx;">
+          <view>{{enrollment.status}}</view>
+          <view>{{enrollment.lastDateTime}}</view>
+        </view>
       </mp-cell>
     </mp-cells>
   </view>
