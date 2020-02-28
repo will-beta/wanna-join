@@ -13,6 +13,7 @@ exports.main = async(event, context) => {
     .collection('enrollments')
     .aggregate()
     .match({
+      _createdBy: wxContext.OPENID,
       deleted: _.neq(true)
     })
     .lookup({

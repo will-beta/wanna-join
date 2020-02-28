@@ -15,7 +15,8 @@ Page({
     wx.cloud.callFunction({
       name: 'show-my-enrollment',
       data: {
-        activityId: this.data.activityId
+        activityId: this.data.activityId,
+        userInfo: this.data.userInfo
       },
       success: res => {
         this.setData({
@@ -39,6 +40,7 @@ Page({
     this.setData({
       userInfo: e.detail
     })
+    this.refreshDataFromServer()
   },
 
   onOpenLocation() {
@@ -70,7 +72,7 @@ Page({
       name: 'update-my-enrollment',
       data: {
         activityId: this.data.activity._id,
-        status: '已取消'
+        status: '已阅'
       },
       success: res => {
         self.refreshDataFromServer()
@@ -89,10 +91,9 @@ Page({
         this.setData({
           userInfo: res.userInfo
         })
+        this.refreshDataFromServer()
       }
     })
-
-    this.refreshDataFromServer()
   },
 
   /**
