@@ -11,7 +11,7 @@
               <mp-cell>
                 <view style="display:flex;flex-direction:row;">
                   <view>
-                    <image src="{{enrollment.userInfo.avatarUrl}}" style="width:150rpx;height:150rpx;"></image>
+                    <image src="{{enrollment.activity.userInfo.avatarUrl}}" style="width:150rpx;height:150rpx;"></image>
                   </view>
                   <view style="padding:0rpx 20rpx;width:80%;">
                     <view class="row">
