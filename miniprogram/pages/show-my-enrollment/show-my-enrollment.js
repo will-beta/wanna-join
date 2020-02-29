@@ -8,6 +8,8 @@ Page({
     activity: null,
     enrollments: null,
     me: null,
+    isOverdue: null,
+    isExcess: null,
     enrollmentStatus: null
   },
 
@@ -28,6 +30,7 @@ Page({
           }),
           me: res.result.me,
           isOverdue: res.result.isOverdue,
+          isExcess: res.result.isExcess,
           enrollmentStatus: res.result.enrollments.find(e => e._createdBy == res.result.me).status
         })
       }

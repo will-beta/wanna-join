@@ -85,7 +85,7 @@
       <button type="primary" style="margin-bottom:40rpx;">修改活动信息</button>
     </navigator>
     <block wx:if="{{!isOverdue}}">
-      <button wx:if="{{enrollmentStatus!='已报名'}}" type="primary" bindtap="onTapToEnroll">报名</button>
+      <button wx:if="{{enrollmentStatus!='已报名'&&!isExcess}}" type="primary" bindtap="onTapToEnroll">报名</button>
       <button wx:if="{{enrollmentStatus=='已报名'}}" type="default" bindtap="onTapToCancel">取消报名</button>
     </block>
   </view>

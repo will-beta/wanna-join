@@ -22,7 +22,7 @@ exports.main = async(event, context) => {
       .where({
         activityId: event.activityId
       })
-      .orderBy('status','asc')
+      .orderBy('status', 'asc')
       .get()
 
     if (enrollments.data.every(d => d._createdBy != wxContext.OPENID)) {
@@ -42,11 +42,19 @@ exports.main = async(event, context) => {
     const data = {
       activity: activities.data[0],
       enrollments: enrollments.data,
-      me: wxContext.OPENID
+      me: wxContext.OPENID,
+      isOverdue: false,
+      isExcess: false
     }
     if (data.activity.deadlineDate) {
       const deadline = new Date(data.activity.deadlineTime ? [data.activity.deadlineDate, data.activity.deadlineTime].join(' ') : data.activity.deadlineDate)
-      data.isOverdue = new Date() > deadline
+      if (deadline < new Date())
+        data.isOverdue = true
+    }
+    if (data.activity.maxCount >= 0) {
+      const current = data.enrollments.filter(e => e.status == '已报名').length;
+      if (current > data.activity.maxCount)
+        data.isExcess = true
     }
     return data
   }

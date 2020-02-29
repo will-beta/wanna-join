@@ -26,7 +26,6 @@ Page({
     wx.cloud.callFunction({
       name: 'list-my-enrollments',
       success: res => {
-        console.log(res)
         this.setData({
           enrollments: res.result
         })
