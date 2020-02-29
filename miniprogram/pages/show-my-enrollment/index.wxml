@@ -84,7 +84,7 @@
     </mp-cell>
   </mp-cells>
   <view style="padding:40rpx 0rpx;border:2px solid #eee;">
-    <navigator wx:if="{{activity._createdBy == me}}" url="{{'/pages/modify-an-activity/modify-an-activity?_id='+activity._id}}">
+    <navigator wx:if="{{activity._createdBy == me}}" url="{{'/pages/modify-an-activity/index?_id='+activity._id}}">
       <button type="primary" style="margin-bottom:40rpx;">修改活动信息</button>
     </navigator>
     <block wx:if="{{!isOverdue}}">
