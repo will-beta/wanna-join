@@ -39,6 +39,7 @@ Page({
     this.setData({
       "userInfo": e.detail
     })
+    this.refreshDataFromServer()
   },
 
   onSlideButtonTap(e) {
@@ -63,10 +64,9 @@ Page({
         this.setData({
           userInfo: res.userInfo
         })
+        this.refreshDataFromServer()
       }
     })
-
-    this.refreshDataFromServer()
   },
 
   /**

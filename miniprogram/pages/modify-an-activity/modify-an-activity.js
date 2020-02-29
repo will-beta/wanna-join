@@ -9,10 +9,25 @@ Page({
     activityId: null
   },
 
+  refreshDataFromServer() {
+    wx.cloud.callFunction({
+      name: 'show-an-activity',
+      data: {
+        _id: this.data.activityId
+      },
+      success: res => {
+        this.setData({
+          activity: res.result
+        })
+      }
+    })
+  },
+
   onGetUserInfo(e) {
     this.setData({
       userInfo: e.detail
     })
+    this.refreshDataFromServer()
   },
 
   onChangeTitle(e) {
@@ -106,18 +121,7 @@ Page({
         this.setData({
           userInfo: res.userInfo
         })
-      }
-    })
-
-    wx.cloud.callFunction({
-      name: 'show-an-activity',
-      data: {
-        _id: this.data.activityId
-      },
-      success: res => {
-        this.setData({
-          activity: res.result
-        })
+        this.refreshDataFromServer()
       }
     })
   },
