@@ -1,0 +1,6 @@
+<view wx:if="{{!userInfo}}">
+  <login bind:getUserInfo="onGetUserInfo"></login>
+</view>
+<view wx:else>
+  <list-my-enrollments userInfo="{{userInfo}}"></list-my-enrollments>
+</view>

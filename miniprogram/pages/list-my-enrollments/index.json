@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "活动报名",
+  "usingComponents": {
+    "login": "../../components/login/login",
+    "list-my-enrollments": "../../components/list-my-enrollments/index"
+  }
+}

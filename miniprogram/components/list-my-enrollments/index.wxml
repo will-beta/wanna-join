@@ -1,0 +1,40 @@
+<scroll-view scroll-y="true" style="position:fixed; height:100%;">
+  <block wx:if="{{enrollments.length>0}}">
+    <mp-cells>
+      <block wx:for="{{enrollments}}" wx:key="index" wx:for-item="enrollment">
+        <navigator url="{{'/pages/show-my-enrollment/show-my-enrollment?activityId='+enrollment.activityId}}">
+          <mp-slideview buttons="{{slideButtons}}" bindbuttontap="onSlideButtonTap" data-key="{{enrollment._id}}">
+            <mp-cell>
+              <view style="display:flex;flex-direction:row;">
+                <view>
+                  <image src="{{enrollment.activity.userInfo.avatarUrl}}" style="width:150rpx;height:150rpx;"></image>
+                </view>
+                <view style="padding:0rpx 20rpx;width:80%;">
+                  <view class="row">
+                    <text wx:if="{{enrollment.activity.title}}" style="font-size:large;">{{enrollment.activity.title}}</text>
+                  </view>
+                  <view>
+                    <text style="margin-right:15rpx;">{{enrollment.activity.startDate}}</text>
+                    <text>{{enrollment.activity.startTime}}</text>
+                  </view>
+                  <view class="row">
+                    <text>{{enrollment.activity.weekday}}</text>
+                    <text>{{enrollment.activity.timespan}}</text>
+                  </view>
+                </view>
+              </view>
+              <view slot="footer" style="writing-mode:vertical-lr;padding:0rpx 20rpx;">{{enrollment.status}}</view>
+            </mp-cell>
+          </mp-slideview>
+        </navigator>
+      </block>
+    </mp-cells>
+  </block>
+  <view wx:else style="color:lightgrey">无活动</view>
+</scroll-view>
+<view style="position:fixed; bottom:10%; right:5%;">
+  <navigator url="/pages/create-an-activity/create-an-activity">
+    <mp-icon type="field" icon="add2" color="#333" size="{{50}}">
+    </mp-icon>
+  </navigator>
+</view>

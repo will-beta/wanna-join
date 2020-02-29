@@ -5,7 +5,7 @@
     }
   },
   "pages": [
-    "pages/list-my-enrollments/list-my-enrollments",
+    "pages/list-my-enrollments/index",
     "pages/show-my-enrollment/show-my-enrollment",
     "pages/create-an-activity/create-an-activity",
     "pages/modify-an-activity/modify-an-activity"
