@@ -1,6 +1,12 @@
-<view wx:if="{{!userInfo}}">
+<block wx:if="{{!userInfo}}">
   <login bind:getUserInfo="onGetUserInfo"></login>
-</view>
-<view wx:else>
-  <list-my-enrollments userInfo="{{userInfo}}"></list-my-enrollments>
-</view>
+</block>
+<block wx:else>
+  <scroll-view scroll-y="true">
+    <list-my-enrollments userInfo="{{userInfo}}"></list-my-enrollments>
+  </scroll-view>
+  <navigator url="/pages/create-an-activity/create-an-activity">
+    <mp-icon type="field" icon="add2" color="#333" size="{{50}}" style="position:fixed; bottom:10%; right:5%;">
+    </mp-icon>
+  </navigator>
+</block>
