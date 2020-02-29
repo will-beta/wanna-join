@@ -15,56 +15,50 @@
         <text>时间</text>
       </view>
       <view>
-        <view style="padding:10rpx;">
+        <view style="padding:10rpx;display:flex;flex-direction:row;">
           <text>开始于</text>
-          <view style="display:flex; flex-direction:row;">
-            <picker mode="date" bindchange="onChangeStartDate">
-              <view class="editable" style="margin:0rpx 10rpx;">
-                <block wx:if="{{activity.startDate}}">{{activity.startDate}}</block>
-                <block wx:else>日期</block>
-              </view>
-            </picker>
-            <picker mode="time" bindchange="onChangeStartTime">
-              <view class="editable" style="margin:0rpx 10rpx;">
-                <block wx:if="{{activity.startTime}}">{{activity.startTime}}</block>
-                <block wx:else>时分</block>
-              </view>
-            </picker>
-          </view>
+          <picker mode="date" bindchange="onChangeStartDate">
+            <view class="editable" style="margin:0rpx 10rpx;">
+              <block wx:if="{{activity.startDate}}">{{activity.startDate}}</block>
+              <block wx:else>日期</block>
+            </view>
+          </picker>
+          <picker mode="time" bindchange="onChangeStartTime">
+            <view class="editable" style="margin:0rpx 10rpx;">
+              <block wx:if="{{activity.startTime}}">{{activity.startTime}}</block>
+              <block wx:else>时分</block>
+            </view>
+          </picker>
         </view>
-        <view style="padding:10rpx;">
-          <text>结束于</text>
-          <view style="display:flex; flex-direction:row;">
-            <picker mode="date" bindchange="onChangeEndDate">
-              <view class="editable" style="margin:0rpx 10rpx;">
-                <block wx:if="{{activity.endDate}}">{{activity.endDate}}</block>
-                <block wx:else>日期</block>
-              </view>
-            </picker>
-            <picker mode="time" bindchange="onChangeEndTime">
-              <view class="editable" style="margin:0rpx 10rpx;">
-                <block wx:if="{{activity.endTime}}">{{activity.endTime}}</block>
-                <block wx:else>时分</block>
-              </view>
-            </picker>
-          </view>
+        <view style="padding:10rpx;display:flex;flex-direction:row;">
+          <text>活动结束于</text>
+          <picker mode="date" bindchange="onChangeEndDate">
+            <view class="editable" style="margin:0rpx 10rpx;">
+              <block wx:if="{{activity.endDate}}">{{activity.endDate}}</block>
+              <block wx:else>日期</block>
+            </view>
+          </picker>
+          <picker mode="time" bindchange="onChangeEndTime">
+            <view class="editable" style="margin:0rpx 10rpx;">
+              <block wx:if="{{activity.endTime}}">{{activity.endTime}}</block>
+              <block wx:else>时分</block>
+            </view>
+          </picker>
         </view>
-        <view style="padding:10rpx;">
-          <text>报名截止于</text>
-          <view style="display:flex; flex-direction:row;">
-            <picker mode="date" bindchange="onChangeDeadlineDate">
-              <view class="editable" style="margin:0rpx 10rpx;">
-                <block wx:if="{{activity.deadlineDate}}">{{activity.deadlineDate}}</block>
-                <block wx:else>日期</block>
-              </view>
-            </picker>
-            <picker mode="time" bindchange="onChangeDeadlineTime">
-              <view class="editable" style="margin:0rpx 10rpx;">
-                <block wx:if="{{activity.deadlineTime}}">{{activity.deadlineTime}}</block>
-                <block wx:else>时分</block>
-              </view>
-            </picker>
-          </view>
+        <view style="padding:10rpx;display:flex;flex-direction:row;">
+          <text>活动报名截止于</text>
+          <picker mode="date" bindchange="onChangeDeadlineDate">
+            <view class="editable" style="margin:0rpx 10rpx;">
+              <block wx:if="{{activity.deadlineDate}}">{{activity.deadlineDate}}</block>
+              <block wx:else>日期</block>
+            </view>
+          </picker>
+          <picker mode="time" bindchange="onChangeDeadlineTime">
+            <view class="editable" style="margin:0rpx 10rpx;">
+              <block wx:if="{{activity.deadlineTime}}">{{activity.deadlineTime}}</block>
+              <block wx:else>时分</block>
+            </view>
+          </picker>
         </view>
       </view>
     </mp-cell>
@@ -91,7 +85,14 @@
         <text>人数限制</text>
       </view>
       <view>
-        <input type="number" placeholder="不限" value="{{activity.maxCount}}" bindblur="onChangeMaxCount" class="editable" />
+        <view style="display:flex;flex-direction:row;margin:5rpx 0;">
+          <text>至少</text>
+          <input type="number" placeholder="不限" value="{{activity.minEnrollmentCount}}" bindblur="onChangeMaxEnrollmentCount" class="editable" />
+        </view>
+        <view style="display:flex;flex-direction:row;margin:5rpx 0;">
+          <text>最多</text>
+          <input type="number" placeholder="不限" value="{{activity.maxEnrollmentCount}}" bindblur="onChangeMaxEnrollmentCount" class="editable" />
+        </view>
       </view>
     </mp-cell>
   </mp-cells>

@@ -76,8 +76,8 @@ Page({
     })
   },
 
-  onChangeMaxCount(e) {
-    this.data.activity.maxCount = e.detail.value
+  onChangeMaxEnrollmentCount(e) {
+    this.data.activity.maxEnrollmentCount = e.detail.value
     console.log(this.data)
   },
 

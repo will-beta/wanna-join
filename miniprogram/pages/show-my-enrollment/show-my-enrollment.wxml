@@ -15,43 +15,37 @@
         <text style="color:grey;">时间</text>
       </view>
       <view>
-        <view style="padding:10rpx;" wx:if="{{activity.startDate||activity.startTime}}">
-          <text>开始于</text>
-          <view style="display:flex; flex-direction:row;">
-            <view style="margin:0rpx 10rpx;">
-              <block wx:if="{{activity.startDate}}">{{activity.startDate}}</block>
-              <block wx:else>日期</block>
-            </view>
-            <view style="margin:0rpx 10rpx;">
-              <block wx:if="{{activity.startTime}}">{{activity.startTime}}</block>
-              <block wx:else>时分</block>
-            </view>
+        <view style="padding:10rpx;display:flex;flex-direction:row;" wx:if="{{activity.startDate||activity.startTime}}">
+          <text>活动开始于</text>
+          <view style="margin:0rpx 10rpx;">
+            <block wx:if="{{activity.startDate}}">{{activity.startDate}}</block>
+            <block wx:else>日期</block>
+          </view>
+          <view style="margin:0rpx 10rpx;">
+            <block wx:if="{{activity.startTime}}">{{activity.startTime}}</block>
+            <block wx:else>时分</block>
           </view>
         </view>
-        <view style="padding:10rpx;" wx:if="{{activity.endDate||activity.endTime}}">
-          <text>结束于</text>
-          <view style="display:flex; flex-direction:row;">
-            <view style="margin:0rpx 10rpx;">
-              <block wx:if="{{activity.endDate}}">{{activity.endDate}}</block>
-              <block wx:else>日期</block>
-            </view>
-            <view style="margin:0rpx 10rpx;">
-              <block wx:if="{{activity.endTime}}">{{activity.endTime}}</block>
-              <block wx:else>时分</block>
-            </view>
+        <view style="padding:10rpx;display:flex;flex-direction:row;" wx:if="{{activity.endDate||activity.endTime}}">
+          <text>活动结束于</text>
+          <view style="margin:0rpx 10rpx;">
+            <block wx:if="{{activity.endDate}}">{{activity.endDate}}</block>
+            <block wx:else>日期</block>
+          </view>
+          <view style="margin:0rpx 10rpx;">
+            <block wx:if="{{activity.endTime}}">{{activity.endTime}}</block>
+            <block wx:else>时分</block>
           </view>
         </view>
-        <view style="padding:10rpx;" wx:if="{{activity.deadlineDate||activity.deadlineTime}}">
+        <view style="padding:10rpx;display:flex;flex-direction:row;" wx:if="{{activity.deadlineDate||activity.deadlineTime}}">
           <text>报名截止于</text>
-          <view style="display:flex; flex-direction:row;">
-            <view style="margin:0rpx 10rpx;">
-              <block wx:if="{{activity.deadlineDate}}">{{activity.deadlineDate}}</block>
-              <block wx:else>日期</block>
-            </view>
-            <view style="margin:0rpx 10rpx;">
-              <block wx:if="{{activity.deadlineTime}}">{{activity.deadlineTime}}</block>
-              <block wx:else>时分</block>
-            </view>
+          <view style="margin:0rpx 10rpx;">
+            <block wx:if="{{activity.deadlineDate}}">{{activity.deadlineDate}}</block>
+            <block wx:else>日期</block>
+          </view>
+          <view style="margin:0rpx 10rpx;">
+            <block wx:if="{{activity.deadlineTime}}">{{activity.deadlineTime}}</block>
+            <block wx:else>时分</block>
           </view>
         </view>
       </view>
@@ -70,13 +64,22 @@
         </view>
       </view>
     </mp-cell>
-    <mp-cell wx:if="{{activity.maxCount!=null}}">
+    <mp-cell wx:if="{{activity.minEnrollmentCount!=null||activity.maxEnrollmentCount!=null}}">
       <view>
         <mp-icon icon="group-detail" size="{{35}}" style="margin-right:20rpx;"></mp-icon>
-        <text style="color:grey;">人数限制</text>
+        <text style="color:grey;">人数</text>
       </view>
       <view>
-        <text>{{activity.maxCount}}</text>
+        <view style="padding:10rpx;display:flex;flex-direction:row;" wx:if="{{activity.minEnrollmentCount!=null}}">
+          <text>至少</text>
+          <text>{{activity.minEnrollmentCount}}</text>
+          <text>人</text>
+        </view>
+        <view style="padding:10rpx;display:flex;flex-direction:row;" wx:if="{{activity.maxEnrollmentCount!=null}}">
+          <text>最多</text>
+          <text>{{activity.maxEnrollmentCount}}</text>
+          <text>人</text>
+        </view>
       </view>
     </mp-cell>
   </mp-cells>

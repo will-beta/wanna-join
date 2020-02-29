@@ -4,10 +4,19 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 
 // 云函数入口函数
-exports.main = async(event, context) => {
+exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const db = cloud.database()
   const _ = db.command
+
+  await db
+    .collection('history')
+    .add({
+      data: {
+        nickName: event.userInfo.nickName,
+        function_name: context.function_name
+      }
+    })
 
   const activities = await db
     .collection('activities')
@@ -48,12 +57,12 @@ exports.main = async(event, context) => {
     }
     if (data.activity.deadlineDate) {
       const deadline = new Date(data.activity.deadlineTime ? [data.activity.deadlineDate, data.activity.deadlineTime].join(' ') : data.activity.deadlineDate)
-      if (deadline < new Date())
+      if (deadline <= new Date())
         data.isOverdue = true
     }
-    if (data.activity.maxCount >= 0) {
+    if (data.activity.maxEnrollmentCount >= 0) {
       const current = data.enrollments.filter(e => e.status == '已报名').length;
-      if (current > data.activity.maxCount)
+      if (current >= data.activity.maxEnrollmentCount)
         data.isExcess = true
     }
     return data

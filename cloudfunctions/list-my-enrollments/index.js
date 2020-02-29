@@ -9,6 +9,15 @@ exports.main = async(event, context) => {
   const db = cloud.database()
   const _ = db.command
 
+  await db
+    .collection('history')
+    .add({
+      data: {
+        nickName: event.userInfo.nickName,
+        function_name: context.function_name
+      }
+    })
+
   const enrollments = await db
     .collection('enrollments')
     .aggregate()

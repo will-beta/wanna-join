@@ -4,15 +4,24 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 
 // 云函数入口函数
-exports.main = async(event, context) => {
+exports.main = async (event, context) => {
+  const db = cloud.database()
+
+  await db
+    .collection('history')
+    .add({
+      data: {
+        nickName: event.userInfo.nickName,
+        function_name: context.function_name
+      }
+    })
+    
   const data = Object.assign({}, event, {
     _modifiedAt: new Date()
   })
   delete data._id
 
-  const collection = cloud
-    .database()
-    .collection('enrollments')
+  const collection = db.collection('enrollments')
   const docs = await collection
     .where({
       activityId: event.activityId
