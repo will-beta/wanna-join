@@ -13,15 +13,6 @@ Page({
     }]
   },
 
-  observers: {
-    'numberA, numberB': function(numberA, numberB) {
-      // 在 numberA 或者 numberB 被设置时，执行这个函数
-      this.setData({
-        sum: numberA + numberB
-      })
-    }
-  },
-
   refreshDataFromServer() {
     wx.cloud.callFunction({
       name: 'list-my-enrollments',
@@ -37,7 +28,7 @@ Page({
 
   onGetUserInfo(e) {
     this.setData({
-      "userInfo": e.detail
+      userInfo: e.detail
     })
     this.refreshDataFromServer()
   },
@@ -59,14 +50,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    wx.getUserInfo({
-      success: res => {
-        this.setData({
-          userInfo: res.userInfo
-        })
-        this.refreshDataFromServer()
-      }
-    })
+
   },
 
   /**

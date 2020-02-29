@@ -88,15 +88,6 @@ Page({
    */
   onLoad: function(options) {
     this.data.activityId = options.activityId
-
-    wx.getUserInfo({
-      success: res => {
-        this.setData({
-          userInfo: res.userInfo
-        })
-        this.refreshDataFromServer()
-      }
-    })
   },
 
   /**
