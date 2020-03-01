@@ -33,27 +33,28 @@ exports.main = async(event, context) => {
     })
     .end()
 
-
   const weekdays = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
-  const data = enrollments.list.map(a => {
-    let d = Object.assign({}, a, {
-      activity: a.activities[0]
-    })
-    delete d.activities
+  const data = enrollments.list
+    .filter(a => a.activities && a.activities.length > 0)
+    .map(a => {
+      let d = Object.assign({}, a, {
+        activity: a.activities[0]
+      })
+      delete d.activities
 
-    if (d.activity.startDate && d.activity.startTime) {
-      const start = new Date(d.activity.startDate + ' ' + d.activity.startTime)
-      const weekday = weekdays[start.getDay()]
-      d.activity.weekday = weekday
+      if (d.activity.startDate && d.activity.startTime) {
+        const start = new Date(d.activity.startDate + ' ' + d.activity.startTime)
+        const weekday = weekdays[start.getDay()]
+        d.activity.weekday = weekday
 
-      if (d.activity.endDate && d.activity.endTime) {
-        const end = new Date(d.activity.endDate + ' ' + d.activity.endTime)
-        const timespan = end - start
-        d.activity.timespan = format(timespan)
+        if (d.activity.endDate && d.activity.endTime) {
+          const end = new Date(d.activity.endDate + ' ' + d.activity.endTime)
+          const timespan = end - start
+          d.activity.timespan = format(timespan)
+        }
       }
-    }
-    return d
-  })
+      return d
+    })
 
   return data
 }

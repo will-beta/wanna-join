@@ -3,7 +3,7 @@
 </block>
 <block wx:else>
   <scroll-view scroll-y="true">
-    <list-my-enrollments userInfo="{{userInfo}}"></list-my-enrollments>
+    <list-my-enrollments user-info="{{userInfo}}"></list-my-enrollments>
   </scroll-view>
   <view style="position:fixed; bottom:10%; right:5%; z-index:100;">
     <navigator url="/pages/create-an-activity/index">

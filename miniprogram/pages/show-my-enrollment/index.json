@@ -1,10 +1,7 @@
 {
   "navigationBarTitleText": "活动信息",
   "usingComponents": {
-    "mp-cell": "../../miniprogram_npm/weui-miniprogram/cell/cell",
-    "mp-cells": "../../miniprogram_npm/weui-miniprogram/cells/cells",
-    "mp-icon": "../../miniprogram_npm/weui-miniprogram/icon/icon",
     "login": "../../components/login/index",
-    "mp-halfScreenDialog": "../../miniprogram_npm/weui-miniprogram/half-screen-dialog/half-screen-dialog"
+    "show-my-enrollment": "../../components/show-my-enrollment/index"
   }
 }

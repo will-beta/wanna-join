@@ -39,6 +39,9 @@ Component({
     refreshDataFromServer(userInfo) {
       wx.cloud.callFunction({
         name: 'list-my-enrollments',
+        data: {
+          userInfo: userInfo
+        },
         success: res => {
           this.setData({
             enrollments: res.result
