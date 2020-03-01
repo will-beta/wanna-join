@@ -4,7 +4,7 @@ Component({
       type: Object,
       value: null,
       observer: function(newVal, oldVal) {
-        this.refreshDataFromServer(newVal)
+        this.refreshDataFromServer()
       }
     }
   },
@@ -36,11 +36,11 @@ Component({
   },
 
   methods: {
-    refreshDataFromServer(userInfo) {
+    refreshDataFromServer() {
       wx.cloud.callFunction({
         name: 'list-my-enrollments',
         data: {
-          userInfo: userInfo
+          userInfo: this.data.userInfo
         },
         success: res => {
           this.setData({

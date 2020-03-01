@@ -4,7 +4,7 @@ Component({
       type: Object,
       value: null,
       observer: function(newVal, oldVal) {
-        this.refreshDataFromServer(newVal)
+        this.refreshDataFromServer()
       }
     },
     activityId: String
@@ -37,12 +37,12 @@ Component({
   },
 
   methods: {
-    refreshDataFromServer(userInfo) {
+    refreshDataFromServer() {
       wx.cloud.callFunction({
         name: 'show-my-enrollment',
         data: {
           activityId: this.data.activityId,
-          userInfo: userInfo
+          userInfo: this.data.userInfo
         },
         fail: res => {
           console.log(res)
