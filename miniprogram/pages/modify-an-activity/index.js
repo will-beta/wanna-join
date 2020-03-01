@@ -91,9 +91,12 @@ Page({
     })
   },
 
+  onChangeMinEnrollmentCount(e) {
+    this.data.activity.minEnrollmentCount = e.detail.value
+  },
+
   onChangeMaxEnrollmentCount(e) {
     this.data.activity.maxEnrollmentCount = e.detail.value
-    console.log(this.data)
   },
 
   onModifyActivity(e) {

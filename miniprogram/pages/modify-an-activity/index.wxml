@@ -87,7 +87,7 @@
       <view>
         <view style="display:flex;flex-direction:row;margin:5rpx 0;">
           <text>至少</text>
-          <input type="number" placeholder="不限" value="{{activity.minEnrollmentCount}}" bindblur="onChangeMaxEnrollmentCount" class="editable" />
+          <input type="number" placeholder="不限" value="{{activity.minEnrollmentCount}}" bindblur="onChangeMinEnrollmentCount" class="editable" />
         </view>
         <view style="display:flex;flex-direction:row;margin:5rpx 0;">
           <text>最多</text>

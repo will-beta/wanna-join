@@ -5,8 +5,10 @@
   <scroll-view scroll-y="true">
     <list-my-enrollments userInfo="{{userInfo}}"></list-my-enrollments>
   </scroll-view>
-  <navigator url="/pages/create-an-activity/index">
-    <mp-icon type="field" icon="add2" color="#333" size="{{50}}" style="position:fixed; bottom:10%; right:5%;">
-    </mp-icon>
-  </navigator>
+  <view style="position:fixed; bottom:10%; right:5%; z-index:100;">
+    <navigator url="/pages/create-an-activity/index">
+      <mp-icon type="field" icon="add2" color="#333" size="{{50}}">
+      </mp-icon>
+    </navigator>
+  </view>
 </block>
