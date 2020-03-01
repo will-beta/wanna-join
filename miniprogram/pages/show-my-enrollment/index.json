@@ -2,6 +2,7 @@
   "navigationBarTitleText": "活动信息",
   "usingComponents": {
     "login": "../../components/login/index",
-    "show-my-enrollment": "../../components/show-my-enrollment/index"
+    "show-an-activity": "../../components/show-an-activity/index",
+    "show-enrollments": "../../components/show-enrollments/index"
   }
 }

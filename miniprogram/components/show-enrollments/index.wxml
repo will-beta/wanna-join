@@ -1,0 +1,21 @@
+<view style="padding:40rpx 0rpx;border:2px solid #eee;">
+  <block wx:if="{{!isExpire}}">
+    <button wx:if="{{enrollmentStatus!='已报名'&&!isFull}}" type="primary" bindtap="onTapToEnroll">报名</button>
+    <button wx:if="{{enrollmentStatus=='已报名'}}" type="default" bindtap="onTapToCancel">取消报名</button>
+  </block>
+</view>
+<view>
+  <mp-cells title="报名成员">
+    <mp-cell wx:for="{{enrollments}}" wx:key="index" wx:for-item="enrollment">
+      <view style="display:flex;flex-direction:row;">
+        <text style="display:flex;align-items:center;;padding-right:20rpx;">{{index+1}}</text>
+        <image src="{{enrollment.userInfo.avatarUrl}}" style="width:150rpx;height:150rpx;"></image>
+        <text style="display:flex;align-items:center;;padding:0rpx 20rpx;">{{enrollment.userInfo.nickName}}</text>
+      </view>
+      <view slot="footer" style="padding:0rpx 20rpx;">
+        <view>{{enrollment.status}}</view>
+        <view>{{lastDateTimes[index]}}</view>
+      </view>
+    </mp-cell>
+  </mp-cells>
+</view>

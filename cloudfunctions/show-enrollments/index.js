@@ -9,15 +9,6 @@ exports.main = async(event, context) => {
   const db = cloud.database()
   const _ = db.command
 
-  await db
-    .collection('history')
-    .add({
-      data: {
-        nickName: event.userInfo.nickName,
-        function_name: context.function_name
-      }
-    })
-
   const exisitingCount = await db.collection('enrollments')
     .where({
       _createdBy: wxContext.OPENID,
@@ -51,23 +42,23 @@ exports.main = async(event, context) => {
     .orderBy('status', 'asc')
     .get()
 
+  const activity = activities.data.length > 0 ? activities.data[0] : null
   const data = {
-    activity: activities.data.length > 0 ? activities.data[0] : null,
     enrollments: enrollments.data,
     me: wxContext.OPENID,
-    isOverdue: false,
-    isExcess: false
+    isExpire: false,
+    isFull: false
   }
-  if (data.activity) {
-    if (data.activity.deadlineDate) {
-      const deadline = new Date(data.activity.deadlineTime ? [data.activity.deadlineDate, data.activity.deadlineTime].join(' ') : data.activity.deadlineDate)
+  if (activity) {
+    if (activity.deadlineDate) {
+      const deadline = new Date(activity.deadlineTime ? [activity.deadlineDate, activity.deadlineTime].join(' ') : activity.deadlineDate)
       if (deadline <= new Date())
-        data.isOverdue = true
+        data.isExpire = true
     }
-    if (data.activity.maxEnrollmentCount >= 0) {
+    if (activity.maxEnrollmentCount >= 0) {
       const current = data.enrollments.filter(e => e.status == '已报名').length;
-      if (current >= data.activity.maxEnrollmentCount)
-        data.isExcess = true
+      if (current >= activity.maxEnrollmentCount)
+        data.isFull = true
     }
   }
   return data

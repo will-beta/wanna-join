@@ -1,21 +1,18 @@
 Component({
   properties: {
-    userInfo: {
-      type: Object,
-      value: null,
-      observer: function(newVal, oldVal) {
-        this.refreshDataFromServer()
-      }
-    }
+    userInfo: Object,
+    activityId: String
   },
 
   data: {
-    enrollments: null,
-    forceRefreshDataFromServer: false,
-    slideButtons: [{
-      type: "warn",
-      text: "删除"
-    }]
+    activity: null,
+    me: null
+  },
+
+  observers: {
+    'userInfo, activityId': function(userInfo, activityId) {
+      this.refreshDataFromServer()
+    }
   },
 
   pageLifetimes: {
@@ -38,13 +35,15 @@ Component({
   methods: {
     refreshDataFromServer() {
       wx.cloud.callFunction({
-        name: 'list-my-enrollments',
+        name: 'show-an-activity',
         data: {
+          activityId: this.data.activityId,
           userInfo: this.data.userInfo
         },
         success: res => {
           this.setData({
-            enrollments: res.result
+            activity: res.result.activity,
+            me: res.result.me
           })
         }
       })
@@ -52,17 +51,13 @@ Component({
       this.forceRefreshDataFromServer = false
     },
 
-    onSlideButtonTap(e) {
-      self = this
-      wx.cloud.callFunction({
-        name: 'delete-my-enrollment',
-        data: {
-          enrollmentId: e.currentTarget.dataset.key
-        },
-        success: () => {
-          self.refreshDataFromServer()
-        }
+    onOpenLocation() {
+      const latitude = this.data.activity.location.latitude
+      const longitude = this.data.activity.location.longitude
+      wx.openLocation({
+        latitude,
+        longitude
       })
-    },
+    }
   }
 })

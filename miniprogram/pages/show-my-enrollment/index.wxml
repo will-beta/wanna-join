@@ -2,5 +2,6 @@
   <login bind:getUserInfo="onGetUserInfo"></login>
 </view>
 <view wx:else>
-  <show-my-enrollment user-info="{{userInfo}}" activity-id="{{activityId}}"></show-my-enrollment>
+  <show-an-activity user-info="{{userInfo}}" activity-id="{{activityId}}"></show-an-activity>
+  <show-enrollments user-info="{{userInfo}}" activity-id="{{activityId}}"></show-enrollments>
 </view>

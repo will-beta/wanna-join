@@ -1,26 +1,21 @@
 Component({
   properties: {
-    userInfo: {
-      type: Object,
-      value: null,
-      observer: function(newVal, oldVal) {
-        this.refreshDataFromServer()
-      }
-    },
+    userInfo: Object,
     activityId: String
   },
 
   data: {
-    activity: null,
     enrollments: null,
     me: null,
-    isOverdue: null,
-    isExcess: null,
+
     lastDateTimes: null,
     enrollmentStatus: null
   },
 
   observers: {
+    'userInfo, activityId': function(userInfo, activityId) {
+      this.refreshDataFromServer()
+    },
     'enrollments, me': function(enrollments, me) {
       this.setData({
         lastDateTimes: enrollments.map(e => {
@@ -57,32 +52,20 @@ Component({
   methods: {
     refreshDataFromServer() {
       wx.cloud.callFunction({
-        name: 'show-my-enrollment',
+        name: 'show-enrollments',
         data: {
           activityId: this.data.activityId,
           userInfo: this.data.userInfo
         },
         success: res => {
           this.setData({
-            activity: res.result.activity,
             enrollments: res.result.enrollments,
-            me: res.result.me,
-            isOverdue: res.result.isOverdue,
-            isExcess: res.result.isExcess
+            me: res.result.me
           })
         }
       })
 
       this.forceRefreshDataFromServer = false
-    },
-
-    onOpenLocation() {
-      const latitude = this.data.activity.location.latitude
-      const longitude = this.data.activity.location.longitude
-      wx.openLocation({
-        latitude,
-        longitude
-      })
     },
 
     onTapToEnroll() {

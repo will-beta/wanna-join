@@ -19,12 +19,12 @@ Component({
       wx.cloud.callFunction({
         name: 'show-an-activity',
         data: {
-          _id: this.data.activityId,
+          activityId: this.data.activityId,
           userInfo: this.data.userInfo
         },
         success: res => {
           this.setData({
-            activity: res.result
+            activity: res.result.activity
           })
         }
       })

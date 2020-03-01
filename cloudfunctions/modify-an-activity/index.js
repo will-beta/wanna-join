@@ -8,15 +8,6 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const db = cloud.database()
 
-  await db
-    .collection('history')
-    .add({
-      data: {
-        nickName: event.userInfo.nickName,
-        function_name: context.function_name
-      }
-    })
-
   const data = Object.assign({}, event.activity, {
     _modifiedAt: new Date()
   })
