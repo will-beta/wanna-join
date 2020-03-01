@@ -16,7 +16,25 @@ Component({
     me: null,
     isOverdue: null,
     isExcess: null,
+    lastDateTimes: null,
     enrollmentStatus: null
+  },
+
+  observers: {
+    'enrollments, me': function(enrollments, me) {
+      this.setData({
+        lastDateTimes: enrollments.map(e => {
+          const t = new Date(e._modifiedAt || e._createdAt)
+          const month = (t.getMonth() + 1).toString().padStart(2, '0')
+          const day = t.getDate().toString().padStart(2, '0')
+          const hour = t.getHours().toString().padStart(2, '0')
+          const minute = t.getMinutes().toString().padStart(2, '0')
+          const lastDateTime = month + '-' + day + ' ' + hour + ':' + minute
+          return lastDateTime
+        }),
+        enrollmentStatus: enrollments.find(e => e._createdBy == me).status
+      })
+    }
   },
 
   pageLifetimes: {
@@ -44,21 +62,13 @@ Component({
           activityId: this.data.activityId,
           userInfo: this.data.userInfo
         },
-        fail: res => {
-          console.log(res)
-        },
         success: res => {
           this.setData({
             activity: res.result.activity,
-            enrollments: res.result.enrollments.map(e => {
-              const t = new Date(e._modifiedAt || e._createdAt)
-              e.lastDateTime = (t.getMonth() + 1).toString().padStart(2, '0') + '-' + t.getDate().toString().padStart(2, '0') + ' ' + t.getHours().toString().padStart(2, '0') + ':' + t.getMinutes().toString().padStart(2, '0')
-              return e
-            }),
+            enrollments: res.result.enrollments,
             me: res.result.me,
             isOverdue: res.result.isOverdue,
-            isExcess: res.result.isExcess,
-            enrollmentStatus: res.result.enrollments.find(e => e._createdBy == res.result.me).status
+            isExcess: res.result.isExcess
           })
         }
       })

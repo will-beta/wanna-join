@@ -98,7 +98,7 @@
       </view>
       <view slot="footer" style="padding:0rpx 20rpx;">
         <view>{{enrollment.status}}</view>
-        <view>{{enrollment.lastDateTime}}</view>
+        <view>{{lastDateTimes[index]}}</view>
       </view>
     </mp-cell>
   </mp-cells>
