@@ -68,30 +68,19 @@ Component({
       this.forceRefreshDataFromServer = false
     },
 
-    onTapToEnroll() {
-      self = this
-      wx.cloud.callFunction({
-        name: 'update-my-enrollment',
-        data: {
-          activityId: this.data.activityId,
-          status: '已报名'
-        },
-        success: res => {
-          self.refreshDataFromServer()
-        }
-      })
-    },
+    onChangeEnrollmentStatus(e) {
+      this.data.enrollmentStatus = e.detail.value
 
-    onTapToCancel() {
-      self = this
       wx.cloud.callFunction({
         name: 'update-my-enrollment',
         data: {
           activityId: this.data.activityId,
-          status: '已阅'
+          status: this.data.enrollmentStatus
         },
         success: res => {
-          self.refreshDataFromServer()
+          this.setData({
+            ...this.data
+          })
         }
       })
     }

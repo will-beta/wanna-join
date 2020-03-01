@@ -1,8 +1,9 @@
 <view style="padding:40rpx 0rpx;border:2px solid #eee;">
-  <block wx:if="{{!isExpire}}">
-    <button wx:if="{{enrollmentStatus!='已报名'&&!isFull}}" type="primary" bindtap="onTapToEnroll">报名</button>
-    <button wx:if="{{enrollmentStatus=='已报名'}}" type="default" bindtap="onTapToCancel">取消报名</button>
-  </block>
+  <radio-group bindchange="onChangeEnrollmentStatus">
+    <radio wx:for="{{['不参加','未确定','参加']}}" value="{{item}}" checked="{{item==enrollmentStatus}}" disabled="{{isExpire||isFull}}">
+      <text>{{item}}</text>
+    </radio>
+  </radio-group>
 </view>
 <view>
   <mp-cells title="报名成员">
