@@ -1,7 +1,7 @@
 <block wx:if="{{enrollments.length>0}}">
   <mp-cells>
     <block wx:for="{{enrollments}}" wx:key="index" wx:for-item="enrollment">
-      <navigator url="{{'/pages/show-my-enrollment/index?activityId='+enrollment.activityId}}">
+      <navigator url="{{'/pages/show-an-activity/index?activityId='+enrollment.activityId}}">
         <mp-slideview buttons="{{slideButtons}}" bindbuttontap="onSlideButtonTap" data-key="{{enrollment._id}}">
           <mp-cell>
             <view style="display:flex;flex-direction:row;">

@@ -15,8 +15,17 @@ exports.main = async(event, context) => {
     })
     .get()
 
+  const enrollments = await db
+    .collection('enrollments')
+    .where({
+      _createdBy: wxContext.OPENID,
+      activityId: event.activityId,
+    })
+    .get()
+
   const data = {
     activity: activities.data.length > 0 ? activities.data[0] : null,
+    enrollment: enrollments.data.length > 0 ? enrollments.data[0] : null,
     me: wxContext.OPENID
   }
   return data

@@ -8,6 +8,7 @@ Component({
     enrollments: null,
     me: null,
 
+    totalCount: null,
     lastDateTimes: null,
     enrollmentStatus: null
   },
@@ -18,6 +19,7 @@ Component({
     },
     'enrollments, me': function(enrollments, me) {
       this.setData({
+        totalCount: enrollments.length,
         lastDateTimes: enrollments.map(e => {
           const t = new Date(e._modifiedAt || e._createdAt)
           const month = (t.getMonth() + 1).toString().padStart(2, '0')
@@ -66,23 +68,6 @@ Component({
       })
 
       this.forceRefreshDataFromServer = false
-    },
-
-    onChangeEnrollmentStatus(e) {
-      this.data.enrollmentStatus = e.detail.value
-
-      wx.cloud.callFunction({
-        name: 'update-my-enrollment',
-        data: {
-          activityId: this.data.activityId,
-          status: this.data.enrollmentStatus
-        },
-        success: res => {
-          this.setData({
-            ...this.data
-          })
-        }
-      })
     }
   }
 })

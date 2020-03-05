@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "活动信息",
   "usingComponents": {
+    "mp-icon": "../../miniprogram_npm/weui-miniprogram/icon/icon",
     "login": "../../components/login/index",
     "show-an-activity": "../../components/show-an-activity/index",
     "show-enrollments": "../../components/show-enrollments/index"

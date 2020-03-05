@@ -34,13 +34,16 @@ exports.main = async(event, context) => {
       delete d.activities
 
       if (d.activity.startDate && d.activity.startTime) {
-        const start = new Date(d.activity.startDate + ' ' + d.activity.startTime)
-        const weekday = weekdays[start.getDay()]
+        const startDateTime = new Date(d.activity.startDate + ' ' + d.activity.startTime)
+        const weekday = weekdays[startDateTime.getDay()]
         d.activity.weekday = weekday
+        if (startDateTime.getFullYear() == new Date().getFullYear()) {
+          d.activity.startDate = d.activity.startDate.substr(5)
+        }
 
         if (d.activity.endDate && d.activity.endTime) {
           const end = new Date(d.activity.endDate + ' ' + d.activity.endTime)
-          const timespan = end - start
+          const timespan = end - startDateTime
           d.activity.timespan = format(timespan)
         }
       }

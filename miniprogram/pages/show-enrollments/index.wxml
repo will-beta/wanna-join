@@ -1,0 +1,6 @@
+<block wx:if="{{!userInfo}}">
+  <login bind:getUserInfo="onGetUserInfo"></login>
+</block>
+<block wx:else>
+  <show-enrollments user-info="{{userInfo}}" activity-id="{{activityId}}"></show-enrollments>
+</block>

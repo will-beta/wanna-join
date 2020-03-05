@@ -5,12 +5,36 @@ Page({
    */
   data: {
     userInfo: null,
-    activityId: null
+    activityId: null,
+    isOwner: null
   },
 
   onGetUserInfo(e) {
     this.setData({
       userInfo: e.detail
+    })
+  },
+
+  onGetActivity(e) {
+    this.setData({
+      isOwner: e.detail.activity._createdBy == e.detail.me
+    })
+  },
+
+  onChangeEnrollmentStatus(e) {
+    this.data.enrollmentStatus = e.detail.value
+
+    wx.cloud.callFunction({
+      name: 'update-my-enrollment',
+      data: {
+        activityId: this.data.activityId,
+        status: this.data.enrollmentStatus
+      },
+      success: res => {
+        this.setData({
+          ...this.data
+        })
+      }
     })
   },
 

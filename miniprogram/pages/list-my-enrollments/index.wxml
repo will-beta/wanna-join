@@ -7,7 +7,7 @@
   </scroll-view>
   <view style="position:fixed; bottom:10%; right:5%; z-index:100;">
     <navigator url="/pages/create-an-activity/index">
-      <mp-icon type="field" icon="add2" color="#333" size="{{50}}">
+      <mp-icon type="field" icon="add2" color="#333" size="{{40}}">
       </mp-icon>
     </navigator>
   </view>
