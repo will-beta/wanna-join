@@ -5,13 +5,50 @@ Page({
    */
   data: {
     userInfo: null,
-    activityId: null
+    activityId: null,
+    activity: null,
+    forceRefreshDataFromServer: false,
+    ready: false
+  },
+
+  refreshDataFromServer() {
+    wx.cloud.callFunction({
+      name: 'show-an-activity',
+      data: {
+        userInfo: this.data.userInfo,
+        activityId: this.data.activityId
+      },
+      success: res => {
+        this.setData({
+          activity: res.result.activity
+        })
+      }
+    })
+
+    this.forceRefreshDataFromServer = false
+  },
+
+  onModifyActivity(e) {
+    const res = wx.cloud.callFunction({
+      name: 'modify-an-activity',
+      data: {
+        activity: e.detail
+      },
+      success: res => {
+        switch (res.errMsg) {
+          case "cloud.callFunction:ok":
+            wx.navigateBack({});
+            break;
+        }
+      }
+    })
   },
 
   onGetUserInfo(e) {
     this.setData({
       userInfo: e.detail
     })
+    this.refreshDataFromServer()
   },
 
   /**
@@ -19,6 +56,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
+      ready: true,
       activityId: options.activityId
     })
   },
@@ -33,15 +71,16 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-
+  onShow: function () {
+    if (this.forceRefreshDataFromServer)
+      this.refreshDataFromServer()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
-
+  onHide: function () {
+    this.forceRefreshDataFromServer = true
   },
 
   /**

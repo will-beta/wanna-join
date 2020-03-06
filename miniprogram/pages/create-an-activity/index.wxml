@@ -2,5 +2,5 @@
   <login bind:getUserInfo="onGetUserInfo"></login>
 </view>
 <view wx:else>
-  <create-an-activity userInfo="{{userInfo}}"></create-an-activity>
+  <create-an-activity bind:onCreateActivity="onCreateActivity"></create-an-activity>
 </view>

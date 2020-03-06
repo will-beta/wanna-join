@@ -6,19 +6,34 @@ Page({
   data: {
     userInfo: null,
     activityId: null,
-    isOwner: null
+    forceRefreshDataFromServer: false,
+    ready: false
+  },
+
+  refreshDataFromServer() {
+    wx.cloud.callFunction({
+      name: 'show-enrollments',
+      data: {
+        activityId: this.data.activityId,
+        userInfo: this.data.userInfo
+      },
+      success: res => {
+        this.setData({
+          ready: true,
+          enrollments: res.result.enrollments,
+          me: res.result.me
+        })
+      }
+    })
+
+    this.forceRefreshDataFromServer = false
   },
 
   onGetUserInfo(e) {
     this.setData({
       userInfo: e.detail
     })
-  },
-
-  onGetActivity(e) {
-    this.setData({
-      isOwner: e.detail.activity._createdBy == e.detail.me
-    })
+    this.refreshDataFromServer()
   },
 
   onChangeEnrollmentStatus(e) {
@@ -58,14 +73,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    if (this.forceRefreshDataFromServer)
+      this.refreshDataFromServer()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    this.forceRefreshDataFromServer = true
   },
 
   /**

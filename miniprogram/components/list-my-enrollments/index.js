@@ -1,68 +1,19 @@
 Component({
   properties: {
-    userInfo: {
-      type: Object,
-      value: null,
-      observer: function(newVal, oldVal) {
-        this.refreshDataFromServer()
-      }
-    }
+    enrollments: Object
   },
 
   data: {
     enrollments: null,
-    forceRefreshDataFromServer: false,
     slideButtons: [{
       type: "warn",
       text: "删除"
     }]
   },
 
-  pageLifetimes: {
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    show: function() {
-      if (this.forceRefreshDataFromServer)
-        this.refreshDataFromServer()
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    hide: function() {
-      this.forceRefreshDataFromServer = true
-    }
-  },
-
   methods: {
-    refreshDataFromServer() {
-      wx.cloud.callFunction({
-        name: 'list-my-enrollments',
-        data: {
-          userInfo: this.data.userInfo
-        },
-        success: res => {
-          this.setData({
-            enrollments: res.result
-          })
-        }
-      })
-
-      this.forceRefreshDataFromServer = false
-    },
-
     onSlideButtonTap(e) {
-      self = this
-      wx.cloud.callFunction({
-        name: 'delete-my-enrollment',
-        data: {
-          enrollmentId: e.currentTarget.dataset.key
-        },
-        success: () => {
-          self.refreshDataFromServer()
-        }
-      })
+      this.triggerEvent('onDeleteEnrollment', e.currentTarget.dataset.key)
     },
   }
 })

@@ -1,35 +1,9 @@
 Component({
   properties: {
-    userInfo: {
-      type: Object,
-      observer: function(newVal, oldVal) {
-        this.refreshDataFromServer()
-      }
-    },
-    activityId: String
-  },
-
-  data: {
-    userInfo: null,
-    activity: {}
+    activity: Object
   },
 
   methods: {
-    refreshDataFromServer() {
-      wx.cloud.callFunction({
-        name: 'show-an-activity',
-        data: {
-          activityId: this.data.activityId,
-          userInfo: this.data.userInfo
-        },
-        success: res => {
-          this.setData({
-            activity: res.result.activity
-          })
-        }
-      })
-    },
-
     onChangeTitle(e) {
       this.data.activity.title = e.detail.value
     },
@@ -100,18 +74,7 @@ Component({
     },
 
     onModifyActivity(e) {
-      const res = wx.cloud.callFunction({
-        name: 'modify-an-activity',
-        data: this.data,
-        success: res => {
-          switch (res.errMsg) {
-            case "cloud.callFunction:ok":
-              wx.navigateBack({});
-              break;
-          }
-        }
-      })
+      this.triggerEvent('onModifyActivity', this.data.activity)
     }
   }
-
 })

@@ -4,13 +4,44 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: null
+    userInfo: null,
+    forceRefreshDataFromServer: false,
+    ready: false
+  },
+
+  refreshDataFromServer() {
+    wx.cloud.callFunction({
+      name: 'list-my-enrollments',
+      data: {
+        userInfo: this.data.userInfo
+      },
+      success: res => {
+        this.setData({
+          enrollments: res.result
+        })
+      }
+    })
+
+    this.forceRefreshDataFromServer = false
+  },
+
+  onDeleteEnrollment(e) {
+    wx.cloud.callFunction({
+      name: 'delete-my-enrollment',
+      data: {
+        enrollmentId: e.detail
+      },
+      success: () => {
+        this.refreshDataFromServer()
+      }
+    })
   },
 
   onGetUserInfo(e) {
     this.setData({
       userInfo: e.detail
     })
+    this.refreshDataFromServer()
   },
 
   /**
@@ -31,14 +62,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    if (this.forceRefreshDataFromServer)
+      this.refreshDataFromServer()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    this.forceRefreshDataFromServer = true
   },
 
   /**

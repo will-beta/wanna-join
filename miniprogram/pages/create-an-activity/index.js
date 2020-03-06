@@ -13,11 +13,28 @@ Page({
     })
   },
 
+  onCreateActivity(e) {
+    const res = wx.cloud.callFunction({
+      name: 'create-an-activity',
+      data: {
+        userInfo: this.data.userInfo,
+        activity: e.detail
+      },
+      success: res => {
+        switch (res.errMsg) {
+          case "cloud.callFunction:ok":
+            wx.navigateBack({});
+            break;
+        }
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+
   },
 
   /**

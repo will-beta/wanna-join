@@ -2,9 +2,9 @@
   <mp-cells>
     <mp-cell wx:for="{{enrollments}}" wx:key="index" wx:for-item="enrollment">
       <view style="display:flex;flex-direction:row;">
-        <text style="display:flex;align-items:center;;padding-right:20rpx;">{{index+1}}</text>
+        <text style="display:flex;align-items:center;padding-right:20rpx;">{{index+1}}</text>
         <image src="{{enrollment.userInfo.avatarUrl}}" style="width:150rpx;height:150rpx;"></image>
-        <text style="display:flex;align-items:center;;padding:0rpx 20rpx;">{{enrollment.userInfo.nickName}}</text>
+        <text style="display:flex;align-items:center;padding:0rpx 20rpx;">{{enrollment.userInfo.nickName}}</text>
       </view>
       <view slot="footer" style="padding:0rpx 20rpx;">
         <view>{{enrollment.status}}</view>

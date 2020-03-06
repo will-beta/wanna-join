@@ -2,5 +2,5 @@
   <login bind:getUserInfo="onGetUserInfo"></login>
 </view>
 <view wx:else>
-  <modify-an-activity user-info="{{userInfo}}" activity-id="{{activityId}}"></modify-an-activity>
+  <modify-an-activity activity="{{activity}}" bind:onModifyActivity="onModifyActivity"></modify-an-activity>
 </view>

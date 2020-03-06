@@ -8,7 +8,8 @@ Page({
     activityId: null,
     activity: null,
     enrollment: null,
-    forceRefreshDataFromServer: false
+    forceRefreshDataFromServer: false,
+    ready: false
   },
 
   refreshDataFromServer() {
@@ -20,6 +21,7 @@ Page({
       },
       success: res => {
         this.setData({
+          ready: true,
           activity: res.result.activity,
           enrollment: res.result.enrollment
         })

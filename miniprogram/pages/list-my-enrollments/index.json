@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "活动报名",
   "usingComponents": {
+    "mp-loading": "../../miniprogram_npm/weui-miniprogram/loading/loading",
     "mp-icon": "../../miniprogram_npm/weui-miniprogram/icon/icon",
     "login": "../../components/login/index",
     "list-my-enrollments": "../../components/list-my-enrollments/index"

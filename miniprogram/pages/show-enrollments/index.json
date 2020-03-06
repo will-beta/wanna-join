@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "报名列表",
   "usingComponents": {
+    "mp-loading": "../../miniprogram_npm/weui-miniprogram/loading/loading",
     "mp-icon": "../../miniprogram_npm/weui-miniprogram/icon/icon",
     "login": "../../components/login/index",
     "show-an-activity": "../../components/show-an-activity/index",

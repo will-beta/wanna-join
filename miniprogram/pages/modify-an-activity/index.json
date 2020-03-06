@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "修改活动",
   "usingComponents": {
+    "mp-loading": "../../miniprogram_npm/weui-miniprogram/loading/loading",
     "login": "../../components/login/index",
     "modify-an-activity": "../../components/modify-an-activity/index"
   }

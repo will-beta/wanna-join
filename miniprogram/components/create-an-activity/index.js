@@ -1,16 +1,5 @@
 Component({
-  properties: {
-    userInfo: {
-      type: Object,
-      value: null,
-      observer: function(newVal, oldVal) {
-        this.data.userInfo = newVal
-      }
-    }
-  },
-
   data: {
-    userInfo: null,
     activity: {}
   },
 
@@ -106,17 +95,7 @@ Component({
     },
 
     onCreateActivity(e) {
-      const res = wx.cloud.callFunction({
-        name: 'create-an-activity',
-        data: this.data,
-        success: res => {
-          switch (res.errMsg) {
-            case "cloud.callFunction:ok":
-              wx.navigateBack({});
-              break;
-          }
-        }
-      })
+      this.triggerEvent('onCreateActivity', this.data.activity)
     }
   }
 })
