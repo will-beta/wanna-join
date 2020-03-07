@@ -20,8 +20,7 @@ Page({
       success: res => {
         this.setData({
           ready: true,
-          enrollments: res.result.enrollments,
-          me: res.result.me
+          enrollments: res.result.enrollments
         })
       }
     })

@@ -23,10 +23,26 @@ exports.main = async(event, context) => {
     })
     .get()
 
+  const activity = activities.data.length > 0 ? activities.data[0] : null
+  const enrollment = enrollments.data.length > 0 ? enrollments.data[0] : null
+  const now = new Date()
   const data = {
-    activity: activities.data.length > 0 ? activities.data[0] : null,
-    enrollment: enrollments.data.length > 0 ? enrollments.data[0] : null,
-    me: wxContext.OPENID
+    activity: activity,
+    enrollment: enrollment,
+    isExpire: false,
+    isFull: false
+  }
+  if (activity) {
+    if (activity.deadlineDate) {
+      const deadline = new Date(activity.deadlineDate + 'T' + activity.deadlineTime + '+08:00')
+      if (deadline <= now)
+        data.isExpire = true
+    }
+    if (activity.maxEnrollmentCount >= 0) {
+      const current = enrollments.data.filter(e => e.status == '已报名').length;
+      if (current >= activity.maxEnrollmentCount)
+        data.isFull = true
+    }
   }
   return data
 }

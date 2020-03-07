@@ -5,19 +5,20 @@
   <mp-loading duration="{{900}}" type="dot-gray" animated="true" style="margin:400rpx 0;"></mp-loading>
 </block>
 <block wx:else>
-  <scroll-view scroll-y="true" style="height:{{enrollment.status!=null && enrollment.status!='已阅' ? 88 : 92}}%;">
+  <scroll-view scroll-y="true" style="height:92%;margin-bottom:8%">
     <show-an-activity activity="{{activity}}"></show-an-activity>
   </scroll-view>
-  <view wx:if="{{enrollment.status!=null && enrollment.status!='已阅'}}" style="height:4%;color:grey;display:flex;align-items:center;justify-content:center;font-size:small;background-color:#efefef;">您{{enrollment.status}}</view>
-  <view style="display:flex;flex-direction:row;height:8%;justify-content:space-between;background-color:#fff;#color:#555;">
-    <button wx:if="{{activity._createdBy == enrollment._createdBy}}" type="default" bindtap="onTapToNavigate" style="border:1px solid #eee;font-size:small;" data-url="{{'/pages/modify-an-activity/index?activityId='+activityId}}">
-      编辑活动
-    </button>
-    <button bindtap="onTapToNavigate" type="default" style="border:1px solid #eee;font-size:small;" data-url="{{'/pages/show-enrollments/index?activityId=' + activityId}}">
-      报名列表
-    </button>
-    <button type="primary" bindtap="onChangeEnrollmentStatus" disabled="{{isExpire||isFull}}" style="font-size:small;">
-      {{enrollment.status=='已报名'?'取消报名':'报名'}}
-    </button>
+  <view style="position:fixed;bottom:0;width:100%;">
+    <view wx:if="{{enrollment.status!=null && enrollment.status!='已阅'}}" style="height:4%;color:grey;display:flex;align-items:center;justify-content:center;font-size:small;background-color:#efefef;">您{{enrollment.status}}</view>
+    <view style="display:flex;flex-direction:row;height:8%;justify-content:space-between;background-color:#fff;#color:#555;">
+      <button wx:if="{{activity._createdBy == enrollment._createdBy}}" type="default" bindtap="onTapToNavigate" style="border:1px solid #eee;font-size:small;" data-url="{{'/pages/modify-an-activity/index?activityId='+activityId}}">
+        编辑活动
+      </button>
+      <button bindtap="onTapToNavigate" type="default" style="border:1px solid #eee;font-size:small;" data-url="{{'/pages/show-enrollments/index?activityId=' + activityId}}">
+        报名列表
+      </button>
+      <button wx:if="{{enrollment.status=='已报名'&&!isExpire}}" style="font-size:small;" bindtap="onTapToCancelEnroll">取消报名</button>
+      <button wx:if="{{enrollment.status!='已报名'&&!isFull}}" style="font-size:small;" type="primary" bindtap="onTapToEnroll">报名</button>
+    </view>
   </view>
 </block>

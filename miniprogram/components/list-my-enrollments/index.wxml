@@ -29,4 +29,7 @@
     </block>
   </mp-cells>
 </block>
-<view wx:else style="color:lightgrey">无活动</view>
+<block wx:else>
+  <view>你还未报名任何活动。</view>
+  <view>要不自己创建一个？</view>
+</block>

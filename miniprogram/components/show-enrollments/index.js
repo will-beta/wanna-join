@@ -1,7 +1,6 @@
 Component({
   properties: {
-    enrollments: Object,
-    me: String
+    enrollments: Object
   },
 
   data: {
@@ -11,7 +10,7 @@ Component({
   },
 
   observers: {
-    'enrollments, me': function(enrollments, me) {
+    enrollments: function(enrollments) {
       this.setData({
         totalCount: enrollments.length,
         lastDateTimes: enrollments.map(e => {
@@ -22,8 +21,7 @@ Component({
           const minute = t.getMinutes().toString().padStart(2, '0')
           const lastDateTime = month + '-' + day + ' ' + hour + ':' + minute
           return lastDateTime
-        }),
-        enrollmentStatus: enrollments.find(e => e._createdBy == me).status
+        })
       })
     }
   }

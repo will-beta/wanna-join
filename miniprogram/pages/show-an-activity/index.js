@@ -8,8 +8,23 @@ Page({
     activityId: null,
     activity: null,
     enrollment: null,
+    isExpire: null,
+    isFull: null,
     forceRefreshDataFromServer: false,
     ready: false
+  },
+
+  updateEnrollmentStatus(status) {
+    wx.cloud.callFunction({
+      name: 'update-my-enrollment',
+      data: {
+        activityId: this.data.activityId,
+        status: status
+      },
+      success: res => {
+        this.refreshDataFromServer()
+      }
+    })
   },
 
   refreshDataFromServer() {
@@ -23,7 +38,9 @@ Page({
         this.setData({
           ready: true,
           activity: res.result.activity,
-          enrollment: res.result.enrollment
+          enrollment: res.result.enrollment,
+          isExpire: res.result.isExpire,
+          isFull: res.result.isFull
         })
       }
     })
@@ -44,21 +61,14 @@ Page({
     })
   },
 
-  onChangeEnrollmentStatus(e) {
-    const status = this.data.enrollment.status == '已报名' ? '已取消报名' : '已报名'
-    wx.cloud.callFunction({
-      name: 'update-my-enrollment',
-      data: {
-        activityId: this.data.activityId,
-        status: status
-      },
-      success: res => {
-        this.data.enrollment.status = status
-        this.setData({
-          enrollment: this.data.enrollment
-        })
-      }
-    })
+  onTapToEnroll(e) {
+    const status = '已报名'
+    this.updateEnrollmentStatus(status)
+  },
+
+  onTapToCancelEnroll(e) {
+    const status = '已取消报名'
+    this.updateEnrollmentStatus(status)
   },
 
   /**
