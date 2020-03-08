@@ -8,7 +8,7 @@
       </view>
       <view slot="footer" style="padding:0rpx 20rpx;">
         <view>{{enrollment.status}}</view>
-        <view>{{lastDateTimes[index]}}</view>
+        <view>{{lastDateTimeStrings[index]}}</view>
       </view>
     </mp-cell>
   </mp-cells>

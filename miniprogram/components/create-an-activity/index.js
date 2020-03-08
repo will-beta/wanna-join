@@ -1,6 +1,8 @@
 Component({
   data: {
-    activity: {}
+    activity: {
+      dateTimeOffset: new Date().getTimezoneOffset() 
+    }
   },
 
   methods: {

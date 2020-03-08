@@ -15,13 +15,13 @@
         <text>活动开始于</text>
         <picker mode="date" bindchange="onChangeStartDate">
           <view class="editable" style="margin:0rpx 10rpx;">
-            <block wx:if="{{activity.startDate}}">{{activity.startDate}}</block>
+            <block wx:if="{{activity.startDateString}}">{{activity.startDateString}}</block>
             <block wx:else>日期</block>
           </view>
         </picker>
         <picker mode="time" bindchange="onChangeStartTime">
           <view class="editable" style="margin:0rpx 10rpx;">
-            <block wx:if="{{activity.startTime}}">{{activity.startTime}}</block>
+            <block wx:if="{{activity.startTimeString}}">{{activity.startTimeString}}</block>
             <block wx:else>时分</block>
           </view>
         </picker>
@@ -30,13 +30,13 @@
         <text>活动结束于</text>
         <picker mode="date" bindchange="onChangeEndDate">
           <view class="editable" style="margin:0rpx 10rpx;">
-            <block wx:if="{{activity.endDate}}">{{activity.endDate}}</block>
+            <block wx:if="{{activity.endDateString}}">{{activity.endDateString}}</block>
             <block wx:else>日期</block>
           </view>
         </picker>
         <picker mode="time" bindchange="onChangeEndTime">
           <view class="editable" style="margin:0rpx 10rpx;">
-            <block wx:if="{{activity.endTime}}">{{activity.endTime}}</block>
+            <block wx:if="{{activity.endTimeString}}">{{activity.endTimeString}}</block>
             <block wx:else>时分</block>
           </view>
         </picker>
@@ -45,13 +45,13 @@
         <text>报名截止于</text>
         <picker mode="date" bindchange="onChangeDeadlineDate">
           <view class="editable" style="margin:0rpx 10rpx;">
-            <block wx:if="{{activity.deadlineDate}}">{{activity.deadlineDate}}</block>
+            <block wx:if="{{activity.deadlineDateString}}">{{activity.deadlineDateString}}</block>
             <block wx:else>日期</block>
           </view>
         </picker>
         <picker mode="time" bindchange="onChangeDeadlineTime">
           <view class="editable" style="margin:0rpx 10rpx;">
-            <block wx:if="{{activity.deadlineTime}}">{{activity.deadlineTime}}</block>
+            <block wx:if="{{activity.deadlineTimeString}}">{{activity.deadlineTimeString}}</block>
             <block wx:else>时分</block>
           </view>
         </picker>

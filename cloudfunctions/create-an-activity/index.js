@@ -8,16 +8,18 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const db = cloud.database()
 
-  const activity = await db
-    .collection('activities')
-    .add({
-      data: Object.assign({
+  const data=Object.assign({
         _createdAt: new Date(),
         _createdBy: wxContext.OPENID,
         userInfo: event.userInfo
       }, event.activity)
+      
+  const activity = await db
+    .collection('activities')
+    .add({
+      data: data
     })
-
+ 
   await db
     .collection('enrollments')
     .add({

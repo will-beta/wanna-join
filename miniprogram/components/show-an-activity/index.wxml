@@ -13,36 +13,18 @@
     <view>
       <view style="padding:10rpx;display:flex;flex-direction:row;" wx:if="{{activity.startDate||activity.startTime}}">
         <text>活动开始于</text>
-        <view style="margin:0rpx 10rpx;">
-          <block wx:if="{{activity.startDate}}">{{activity.startDate}}</block>
-          <block wx:else>日期</block>
-        </view>
-        <view style="margin:0rpx 10rpx;">
-          <block wx:if="{{activity.startTime}}">{{activity.startTime}}</block>
-          <block wx:else>时分</block>
-        </view>
+        <view style="margin:0rpx 10rpx;">{{activity.startDate}}</view>
+        <view style="margin:0rpx 10rpx;">{{activity.startTime}}</view>
       </view>
       <view style="padding:10rpx;display:flex;flex-direction:row;" wx:if="{{activity.endDate||activity.endTime}}">
         <text>活动结束于</text>
-        <view style="margin:0rpx 10rpx;">
-          <block wx:if="{{activity.endDate}}">{{activity.endDate}}</block>
-          <block wx:else>日期</block>
-        </view>
-        <view style="margin:0rpx 10rpx;">
-          <block wx:if="{{activity.endTime}}">{{activity.endTime}}</block>
-          <block wx:else>时分</block>
-        </view>
+        <view style="margin:0rpx 10rpx;">{{activity.endDate}}</view>
+        <view style="margin:0rpx 10rpx;">{{activity.endTime}}</view>
       </view>
       <view style="padding:10rpx;display:flex;flex-direction:row;" wx:if="{{activity.deadlineDate||activity.deadlineTime}}">
         <text>报名截止于</text>
-        <view style="margin:0rpx 10rpx;">
-          <block wx:if="{{activity.deadlineDate}}">{{activity.deadlineDate}}</block>
-          <block wx:else>日期</block>
-        </view>
-        <view style="margin:0rpx 10rpx;">
-          <block wx:if="{{activity.deadlineTime}}">{{activity.deadlineTime}}</block>
-          <block wx:else>时分</block>
-        </view>
+        <view style="margin:0rpx 10rpx;">{{activity.deadlineDate}}</view>
+        <view style="margin:0rpx 10rpx;">{{activity.deadlineTime}}</view>
       </view>
     </view>
   </mp-cell>

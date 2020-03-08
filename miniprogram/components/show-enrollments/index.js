@@ -1,3 +1,5 @@
+const dateTimeUtil = require('../../libs/date-time-util.js')
+
 Component({
   properties: {
     enrollments: Object
@@ -11,16 +13,14 @@ Component({
 
   observers: {
     enrollments: function(enrollments) {
+      const now = new Date()
       this.setData({
         totalCount: enrollments.length,
-        lastDateTimes: enrollments.map(e => {
+        lastDateTimeStrings: enrollments.map(e => {
           const t = new Date(e._modifiedAt || e._createdAt)
-          const month = (t.getMonth() + 1).toString().padStart(2, '0')
-          const day = t.getDate().toString().padStart(2, '0')
-          const hour = t.getHours().toString().padStart(2, '0')
-          const minute = t.getMinutes().toString().padStart(2, '0')
-          const lastDateTime = month + '-' + day + ' ' + hour + ':' + minute
-          return lastDateTime
+          const lastDateTimeString = Object.values(dateTimeUtil.assembleDisplay(t, true, now)).reduce((a, b) => a + ' ' + b)
+
+          return lastDateTimeString
         })
       })
     }

@@ -1,3 +1,5 @@
+const activityUtil = require('../../libs/activity-util.js')
+
 Page({
 
   /**
@@ -35,6 +37,10 @@ Page({
         userInfo: this.data.userInfo
       },
       success: res => {
+        const now = new Date()
+        const activity = activityUtil.localizeDateTime(res.result.activity, now)
+        activity.dateTimeOffset = now.dateTimeOffset
+
         this.setData({
           ready: true,
           activity: res.result.activity,
