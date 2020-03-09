@@ -1,6 +1,11 @@
-<button style="width:100%;" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">
-  <view style="display:flex; flex-direction:column; align-items:center;">
-    <mp-icon type="field" icon="me" color="grey" size="{{120}}"></mp-icon>
-    <text>请先点击登录</text>
-  </view>
-</button>
+<block wx:if="{{!ready}}">
+  <mp-loading duration="{{900}}" type="dot-gray" animated="true" style="margin:400rpx 0;"></mp-loading>
+</block>
+<block wx:else>
+  <button style="width:100%;" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">
+    <view style="display:flex; flex-direction:column; align-items:center;">
+      <mp-icon type="field" icon="me" color="grey" size="{{120}}"></mp-icon>
+      <text>请先点击登录</text>
+    </view>
+  </button>
+</block>

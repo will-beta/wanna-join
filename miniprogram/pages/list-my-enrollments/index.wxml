@@ -1,6 +1,9 @@
 <block wx:if="{{!userInfo}}">
   <login bind:getUserInfo="onGetUserInfo"></login>
 </block>
+<block wx:elif="{{!ready}}">
+  <mp-loading duration="{{900}}" type="dot-gray" animated="true" style="margin:400rpx 0;"></mp-loading>
+</block>
 <block wx:else>
   <scroll-view scroll-y="true">
     <list-my-enrollments enrollments="{{enrollments}}" bind:onDeleteEnrollment="onDeleteEnrollment"></list-my-enrollments>

@@ -17,12 +17,13 @@ Page({
       },
       success: res => {
         this.setData({
+          ready: true,
           enrollments: res.result
         })
       }
     })
 
-    this.forceRefreshDataFromServer = false
+    this.data.forceRefreshDataFromServer = false
   },
 
   onDeleteEnrollment(e) {
@@ -62,7 +63,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (this.forceRefreshDataFromServer)
+    if (this.data.forceRefreshDataFromServer)
       this.refreshDataFromServer()
   },
 
@@ -70,7 +71,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    this.forceRefreshDataFromServer = true
+    this.data.forceRefreshDataFromServer = true
   },
 
   /**

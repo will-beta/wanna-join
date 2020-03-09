@@ -38,8 +38,7 @@ Page({
       },
       success: res => {
         const now = new Date()
-        const activity = activityUtil.localizeDateTime(res.result.activity, now)
-        activity.dateTimeOffset = now.dateTimeOffset
+        const activity = activityUtil.localizeDateTime(res.result.activity, now, true)
 
         this.setData({
           ready: true,
@@ -51,7 +50,7 @@ Page({
       }
     })
 
-    this.forceRefreshDataFromServer = false
+    this.data.forceRefreshDataFromServer = false
   },
 
   onGetUserInfo(e) {
@@ -62,9 +61,11 @@ Page({
   },
 
   onTapToNavigate(e) {
-    wx.navigateTo({
-      url: e.target.dataset.url
-    })
+    if (e.target.dataset.url) {
+      wx.navigateTo({
+        url: e.target.dataset.url
+      })
+    }
   },
 
   onTapToEnroll(e) {
@@ -97,7 +98,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (this.forceRefreshDataFromServer)
+    if (this.data.forceRefreshDataFromServer)
       this.refreshDataFromServer()
   },
 
@@ -105,7 +106,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    this.forceRefreshDataFromServer = true
+    this.data.forceRefreshDataFromServer = true
   },
 
   /**

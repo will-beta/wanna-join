@@ -28,7 +28,7 @@ exports.assembleDateObject = (dateString, timeString, dateTimeOffset) => {
   return dateObj
 }
 
-exports.assembleDisplay = (dateTime, simplify, now) => {
+exports.assembleDisplay = (dateTime, now, simplify) => {
   const addYear = !simplify || dateTime.getFullYear() != new Date().getFullYear()
   const dateString = (addYear ? dateTime.getFullYear() + '-' : '') + dateTime.getMonth().toString().padStart(2, '0') + '-' + dateTime.getDate().toString().padStart(2, '0')
 

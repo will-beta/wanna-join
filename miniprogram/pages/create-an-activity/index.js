@@ -4,11 +4,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: null
+    userInfo: null,
+    ready: false
   },
 
   onGetUserInfo(e) {
     this.setData({
+      ready: true,
       userInfo: e.detail
     })
   },

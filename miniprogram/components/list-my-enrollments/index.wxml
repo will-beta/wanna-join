@@ -29,6 +29,8 @@
   </mp-cells>
 </block>
 <block wx:else>
-  <view>你还未报名任何活动。</view>
-  <view>要不自己创建一个？</view>
+  <view>
+    <view>你还未报名任何活动。</view>
+    <view>要不自己创建一个？</view>
+  </view>
 </block>

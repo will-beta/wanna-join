@@ -22,16 +22,16 @@ Page({
       },
       success: res => {
         const now = new Date()
-        const activity = activityUtil.localizeDateTime(res.result.activity, now)
-        activity.dateTimeOffset = now.dateTimeOffset
+        const activity = activityUtil.localizeDateTime(res.result.activity, now, false)
 
         this.setData({
+          ready: true,
           activity: activity
         })
       }
     })
 
-    this.forceRefreshDataFromServer = false
+    this.data.forceRefreshDataFromServer = false
   },
 
   onModifyActivity(e) {
@@ -62,7 +62,6 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      ready: true,
       activityId: options.activityId
     })
   },
@@ -78,7 +77,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (this.forceRefreshDataFromServer)
+    if (this.data.forceRefreshDataFromServer)
       this.refreshDataFromServer()
   },
 
@@ -86,7 +85,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    this.forceRefreshDataFromServer = true
+    this.data.forceRefreshDataFromServer = true
   },
 
   /**

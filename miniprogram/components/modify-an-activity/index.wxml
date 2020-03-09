@@ -83,11 +83,11 @@
     <view>
       <view style="display:flex;flex-direction:row;margin:5rpx 0;">
         <text>至少</text>
-        <input type="number" placeholder="不限" value="{{activity.minEnrollmentCount}}" bindblur="onChangeMinEnrollmentCount" class="editable" />
+        <input type="number" placeholder="不限" value="{{activity.minEnrollmentCount}}" bindblur="onChangeMinEnrollmentCount" class="editable" style="margin:0 15rpx;" />
       </view>
       <view style="display:flex;flex-direction:row;margin:5rpx 0;">
         <text>最多</text>
-        <input type="number" placeholder="不限" value="{{activity.maxEnrollmentCount}}" bindblur="onChangeMaxEnrollmentCount" class="editable" />
+        <input type="number" placeholder="不限" value="{{activity.maxEnrollmentCount}}" bindblur="onChangeMaxEnrollmentCount" class="editable" style="margin:0 15rpx;" />
       </view>
     </view>
   </mp-cell>
