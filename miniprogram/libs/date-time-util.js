@@ -1,4 +1,4 @@
-exports.assembleTimeSpanString = (timespan) => {
+exports.assembleTimeSpan = (timespan) => {
   //计算出相差天数 
   const days = Math.floor(timespan / (24 * 3600 * 1000))
   //计算出小时数
@@ -35,7 +35,7 @@ exports.assembleDisplay = (dateTime, now, simplify) => {
   const timeString = dateTime.getHours().toString().padStart(2, '0') + ':' + dateTime.getMinutes().toString().padStart(2, '0')
 
   return {
-    dateString: dateString,
-    timeString: timeString
+    date: dateString,
+    time: timeString
   }
 }

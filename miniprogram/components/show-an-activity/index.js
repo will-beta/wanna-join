@@ -6,7 +6,7 @@ Component({
   },
 
   data: {
-    display: {}
+    display: null
   },
 
   observers: {

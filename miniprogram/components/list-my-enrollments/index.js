@@ -25,7 +25,7 @@ Component({
 
           if (d.activity.startDate && d.activity.startTime) {
             const startDateTime = dateTimeUtil.assembleDateObject(d.activity.startDate, d.activity.startTime, d.activity.dateTimeOffset)
-            display.startDateTimeString = Object.values(dateTimeUtil.assembleDisplay(startDateTime, now, true)).reduce((a, b) => a + ' ' + b)
+            display.startDateTime = Object.values(dateTimeUtil.assembleDisplay(startDateTime, now, true)).reduce((a, b) => a + ' ' + b)
 
             const weekday = weekdays[startDateTime.getDay()]
             display.weekday = weekday
@@ -33,7 +33,7 @@ Component({
             if (d.activity.endDate && d.activity.endTime) {
               const endDateTime = dateTimeUtil.assembleDateObject(d.activity.endDate, d.activity.endTime, d.activity.dateTimeOffset)
               const timespan = endDateTime - startDateTime
-              display.timespanString = dateTimeUtil.assembleTimeSpanString(timespan)
+              display.timespan = dateTimeUtil.assembleTimeSpan(timespan)
             }
           }
         }

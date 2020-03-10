@@ -21,12 +21,9 @@ Page({
         activityId: this.data.activityId
       },
       success: res => {
-        const now = new Date()
-        const activity = activityUtil.localizeDateTime(res.result.activity, now, false)
-
         this.setData({
           ready: true,
-          activity: activity
+          activity: res.result.activity
         })
       }
     })

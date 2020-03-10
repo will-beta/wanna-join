@@ -1,8 +1,22 @@
-const dateTimeUtil = require('../../libs/date-time-util.js')
+const activityUtil = require('../../libs/activity-util.js')
 
 Component({
   properties: {
     activity: Object
+  },
+
+  data: {
+    display: null
+  },
+
+  observers: {
+    activity: function (activity) {
+      const now = new Date()
+      const display = activityUtil.localizeDateTime(activity, now, true)
+      this.setData({
+        display: display
+      })
+    }
   },
 
   methods: {

@@ -16,11 +16,11 @@ Component({
       const now = new Date()
       this.setData({
         totalCount: enrollments.length,
-        lastDateTimeStrings: enrollments.map(e => {
+        lastDateTimes: enrollments.map(e => {
           const t = new Date(e._modifiedAt || e._createdAt)
-          const lastDateTimeString = Object.values(dateTimeUtil.assembleDisplay(t, now, true)).reduce((a, b) => a + ' ' + b)
+          const lastDateTime = Object.values(dateTimeUtil.assembleDisplay(t, now, true)).reduce((a, b) => a + ' ' + b)
 
-          return lastDateTimeString
+          return lastDateTime
         })
       })
     }

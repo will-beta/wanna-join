@@ -38,11 +38,12 @@ Page({
       },
       success: res => {
         const now = new Date()
-        const activity = activityUtil.localizeDateTime(res.result.activity, now, true)
+        const display = activityUtil.localizeDateTime(res.result.activity, now, true)
 
         this.setData({
           ready: true,
           activity: res.result.activity,
+          display: display,
           enrollment: res.result.enrollment,
           isExpire: res.result.isExpire,
           isFull: res.result.isFull
@@ -61,11 +62,9 @@ Page({
   },
 
   onTapToNavigate(e) {
-    if (e.target.dataset.url) {
-      wx.navigateTo({
-        url: e.target.dataset.url
-      })
-    }
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    })
   },
 
   onTapToEnroll(e) {

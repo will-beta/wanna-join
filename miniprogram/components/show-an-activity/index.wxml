@@ -13,18 +13,18 @@
     <view>
       <view style="padding:10rpx;display:flex;flex-direction:row;" wx:if="{{activity.startDate||activity.startTime}}">
         <text>活动开始于</text>
-        <view style="margin:0rpx 10rpx;">{{display.startDateString}}</view>
-        <view style="margin:0rpx 10rpx;">{{display.startTimeString}}</view>
+        <view style="margin:0rpx 10rpx;">{{display.startDate}}</view>
+        <view style="margin:0rpx 10rpx;">{{display.startTime}}</view>
       </view>
       <view style="padding:10rpx;display:flex;flex-direction:row;" wx:if="{{activity.endDate||activity.endTime}}">
         <text>活动结束于</text>
-        <view style="margin:0rpx 10rpx;">{{display.endDateString}}</view>
-        <view style="margin:0rpx 10rpx;">{{display.endTimeString}}</view>
+        <view style="margin:0rpx 10rpx;">{{display.endDate}}</view>
+        <view style="margin:0rpx 10rpx;">{{display.endTime}}</view>
       </view>
       <view style="padding:10rpx;display:flex;flex-direction:row;" wx:if="{{activity.deadlineDate||activity.deadlineTime}}">
         <text>报名截止于</text>
-        <view style="margin:0rpx 10rpx;">{{display.deadlineDateString}}</view>
-        <view style="margin:0rpx 10rpx;">{{display.deadlineTimeString}}</view>
+        <view style="margin:0rpx 10rpx;">{{display.deadlineDate}}</view>
+        <view style="margin:0rpx 10rpx;">{{display.deadlineTime}}</view>
       </view>
     </view>
   </mp-cell>

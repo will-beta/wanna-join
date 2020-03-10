@@ -13,11 +13,11 @@
                   <text wx:if="{{enrollment.activity.title}}" style="font-size:large;">{{enrollment.activity.title}}</text>
                 </view>
                 <view>
-                  <text>{{displays[index].startDateTimeString}}</text>
+                  <text>{{displays[index].startDateTime}}</text>
                 </view>
                 <view class="row">
                   <text>{{displays[index].weekday}}</text>
-                  <text>{{displays[index].timespanString}}</text>
+                  <text>{{displays[index].timespan}}</text>
                 </view>
               </view>
             </view>
