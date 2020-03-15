@@ -35,23 +35,6 @@ Page({
     this.refreshDataFromServer()
   },
 
-  onChangeEnrollmentStatus(e) {
-    this.data.enrollmentStatus = e.detail.value
-
-    wx.cloud.callFunction({
-      name: 'update-my-enrollment',
-      data: {
-        activityId: this.data.activityId,
-        status: this.data.enrollmentStatus
-      },
-      success: res => {
-        this.setData({
-          ...this.data
-        })
-      }
-    })
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */

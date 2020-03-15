@@ -2,14 +2,10 @@ page {
   height: 100%;
 }
 
-button {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.weui-dialog__wrp .weui-dialog{
+  background: #f6f6f6;
 }
 
-button text {
-  display: flex;
-  align-items: center;
-  height: 100%;
+.weui-dialog__bd {
+  text-align: left;
 }

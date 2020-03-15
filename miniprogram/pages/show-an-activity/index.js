@@ -16,13 +16,10 @@ Page({
     ready: false
   },
 
-  updateEnrollmentStatus(status) {
+  updateEnrollment(e) {
     wx.cloud.callFunction({
       name: 'update-my-enrollment',
-      data: {
-        activityId: this.data.activityId,
-        status: status
-      },
+      data: e.detail,
       success: res => {
         this.refreshDataFromServer()
       }
@@ -59,22 +56,6 @@ Page({
       userInfo: e.detail
     })
     this.refreshDataFromServer()
-  },
-
-  onTapToNavigate(e) {
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url
-    })
-  },
-
-  onTapToEnroll(e) {
-    const status = '已报名'
-    this.updateEnrollmentStatus(status)
-  },
-
-  onTapToCancelEnroll(e) {
-    const status = '已取消报名'
-    this.updateEnrollmentStatus(status)
   },
 
   /**
