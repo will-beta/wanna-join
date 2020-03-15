@@ -14,7 +14,3 @@ button text {
   background: #fff;
   padding: 5rpx 10rpx;
 }
-
-.dialog{
-  background-color: blue;
-}

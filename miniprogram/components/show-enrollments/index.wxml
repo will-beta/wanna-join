@@ -4,7 +4,10 @@
       <view style="display:flex;flex-direction:row;">
         <text style="display:flex;align-items:center;padding-right:20rpx;">{{index+1}}</text>
         <image src="{{enrollment.userInfo.avatarUrl}}" style="width:150rpx;height:150rpx;"></image>
-        <text style="display:flex;align-items:center;padding:0rpx 20rpx;">{{enrollment.userInfo.nickName}}</text>
+        <view style="display:flex;flex-direction:column;justify-content:space-around;padding:0rpx 20rpx;">
+          <view>{{enrollment.nickname}}</view>
+          <view style="color:grey;">{{enrollment.prologue}}</view>
+        </view>
       </view>
       <view slot="footer" style="padding:0rpx 20rpx;">
         <view>{{enrollment.status}}</view>

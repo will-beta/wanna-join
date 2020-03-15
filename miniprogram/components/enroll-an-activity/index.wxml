@@ -4,7 +4,7 @@
     <text>编辑活动</text>
   </button>
   <button bindtap="onTapToNavigate" type="default" style="border:1px solid #eee;font-size:small;" data-url="{{pageToShowEnrollments}}">
-    <text>报名列表</text>
+    <text>报名人员</text>
   </button>
   <button wx:if="{{enrollment.status=='已报名'&&!isExpire}}" type="default" style="font-size:small;" bindtap="onTapToCancelEnroll">
     <text>取消报名</text>
@@ -13,8 +13,8 @@
     <text>报名</text>
   </button>
 </view>
-<mp-dialog show="{{dialogShow}}" buttons="{{buttons}}" bindbuttontap="onTapDialogButton">
-  <view>
+<mp-dialog show="{{dialogShow}}" title="报名表" buttons="{{buttons}}" bindbuttontap="onTapDialogButton">
+  <view style="margin-bottom:30rpx;">
     <text>昵称</text>
     <input name="nickname" type="text" value="{{enrollment.nickname}}" class="editable" bindblur="onChangeNickname" />
   </view>
