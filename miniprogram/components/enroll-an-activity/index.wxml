@@ -3,6 +3,9 @@
   <button wx:if="{{activity._createdBy == enrollment._createdBy}}" type="default" bindtap="onTapToNavigate" style="font-size:small;" data-url="{{pageToModifyAnActivity}}">
     <text>编辑活动</text>
   </button>
+  <button type="primary" open-type="share" style="font-size:small;">
+    <text>分享活动</text>
+  </button>
   <button bindtap="onTapToNavigate" type="default" style="font-size:small;" data-url="{{pageToShowEnrollments}}">
     <text>报名人员</text>
   </button>
@@ -10,7 +13,7 @@
     <text>取消报名</text>
   </button>
   <button wx:if="{{enrollment.status!='已报名'&&!isExpire&&!isFull}}" type="primary" style="font-size:small;" bindtap="onTapToOpenDialog">
-    <text>报名</text>
+    <text>我想报名</text>
   </button>
 </view>
 <mp-dialog ext-class="dialog" show="{{dialogShow}}" title="报名表" buttons="{{buttons}}" bindbuttontap="onTapDialogButton">

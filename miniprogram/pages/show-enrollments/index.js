@@ -39,6 +39,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    if (getCurrentPages().length == 1) {
+      wx.redirectTo({
+        url: '/pages/show-an-activity/index?activityId=' + options.activityId,
+      })
+    }
+
     this.setData({
       activityId: options.activityId
     })
