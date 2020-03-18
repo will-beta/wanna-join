@@ -8,7 +8,9 @@ Component({
     pageToModifyAnActivity: String,
     pageToShowEnrollments: String,
     activity: Object,
-    enrollment: Object
+    enrollment: Object,
+    isExpire: Boolean,
+    isFull: Boolean
   },
 
   /**
@@ -33,8 +35,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    onChangeNickname(e) {
-      this.data.enrollment.nickname = e.detail.value
+    onChangeNickName(e) {
+      this.data.enrollment.nickName = e.detail.value
     },
 
     onChangePrologue(e) {
@@ -50,7 +52,7 @@ Component({
     onTapToCancelEnroll(e) {
       this.data.enrollment.status = '已取消报名'
       this.triggerEvent(eventName, {
-        activityId: this.data.enrollment.activityId,
+        _id: this.data.enrollment._id,
         status: this.data.enrollment.status
       })
     },
@@ -67,9 +69,9 @@ Component({
           {
             this.data.enrollment.status = '已报名'
             this.triggerEvent(eventName, {
-              activityId: this.data.enrollment.activityId,
+              _id: this.data.enrollment._id,
               status: this.data.enrollment.status,
-              nickname: this.data.enrollment.nickname,
+              nickName: this.data.enrollment.nickName,
               prologue: this.data.enrollment.prologue,
             })
 

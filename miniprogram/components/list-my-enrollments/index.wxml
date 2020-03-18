@@ -6,9 +6,9 @@
           <mp-cell>
             <view style="display:flex;flex-direction:row;">
               <view>
-                <image src="{{enrollment.activity.userInfo.avatarUrl}}" style="width:150rpx;height:150rpx;"></image>
+                <image src="{{enrollment.activity.userInfo.avatarUrl}}" style="min-width:64px;min-height:64px;max-width:64px;max-height:64px;"></image>
               </view>
-              <view style="padding:0rpx 20rpx;width:80%;">
+              <view style="padding:0 8px;width:80%;">
                 <view class="row">
                   <text wx:if="{{enrollment.activity.title}}" style="font-size:large;">{{enrollment.activity.title}}</text>
                 </view>
@@ -21,7 +21,7 @@
                 </view>
               </view>
             </view>
-            <view slot="footer" style="writing-mode:vertical-lr;padding:0rpx 20rpx;">{{enrollment.status}}</view>
+            <view slot="footer" style="writing-mode:vertical-lr;padding:0 8px;">{{enrollment.status}}</view>
           </mp-cell>
         </mp-slideview>
       </navigator>

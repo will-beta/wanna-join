@@ -28,7 +28,8 @@ exports.main = async (event, context) => {
         _createdBy: wxContext.OPENID,
         activityId: activity._id,
         userInfo: event.userInfo,
-        status: '已阅'
+        status: '已阅',
+        nickName: event.userInfo.nickName
       }
     })
 }

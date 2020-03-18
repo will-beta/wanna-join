@@ -9,6 +9,6 @@
     <show-an-activity activity="{{activity}}" display="{{display}}"></show-an-activity>
   </scroll-view>
   <view style="position:fixed;bottom:0;width:100%;height:12%;">
-    <enroll-an-activity activity="{{activity}}" enrollment="{{enrollment}}" pageToModifyAnActivity="{{'/pages/modify-an-activity/index?activityId='+activityId}}" pageToShowEnrollments="{{'/pages/show-enrollments/index?activityId=' + activityId}}" bind:updateEnrollment="updateEnrollment"></enroll-an-activity>
+    <enroll-an-activity activity="{{activity}}" enrollment="{{enrollment}}" isExpire="{{isExpire}}" isFull="{{isFull}}" pageToModifyAnActivity="{{'/pages/modify-an-activity/index?activityId='+activityId}}" pageToShowEnrollments="{{'/pages/show-enrollments/index?activityId=' + activityId}}" bind:updateEnrollment="updateEnrollment"></enroll-an-activity>
   </view>
 </block>

@@ -1,22 +1,22 @@
 <view wx:if="{{enrollment.status!=null && enrollment.status!='已阅'}}" style="height:30%;color:grey;display:flex;align-items:center;justify-content:center;font-size:small;background-color:#efefef;">您{{enrollment.status}}</view>
-<view style="display:flex;flex-direction:row;height:70%;justify-content:space-between;background-color:#fff;#color:#555;">
-  <button wx:if="{{activity._createdBy == enrollment._createdBy}}" type="default" bindtap="onTapToNavigate" style="border:1px solid #eee;font-size:small;" data-url="{{pageToModifyAnActivity}}">
+<view style="display:flex;flex-direction:row;height:70%;justify-content:space-between;background-color:#efefef;#color:#555;">
+  <button wx:if="{{activity._createdBy == enrollment._createdBy}}" type="default" bindtap="onTapToNavigate" style="font-size:small;" data-url="{{pageToModifyAnActivity}}">
     <text>编辑活动</text>
   </button>
-  <button bindtap="onTapToNavigate" type="default" style="border:1px solid #eee;font-size:small;" data-url="{{pageToShowEnrollments}}">
+  <button bindtap="onTapToNavigate" type="default" style="font-size:small;" data-url="{{pageToShowEnrollments}}">
     <text>报名人员</text>
   </button>
   <button wx:if="{{enrollment.status=='已报名'&&!isExpire}}" type="default" style="font-size:small;" bindtap="onTapToCancelEnroll">
     <text>取消报名</text>
   </button>
-  <button wx:if="{{enrollment.status!='已报名'&&!isFull}}" type="primary" style="font-size:small;" bindtap="onTapToOpenDialog">
+  <button wx:if="{{enrollment.status!='已报名'&&!isExpire&&!isFull}}" type="primary" style="font-size:small;" bindtap="onTapToOpenDialog">
     <text>报名</text>
   </button>
 </view>
-<mp-dialog show="{{dialogShow}}" title="报名表" buttons="{{buttons}}" bindbuttontap="onTapDialogButton">
+<mp-dialog ext-class="dialog" show="{{dialogShow}}" title="报名表" buttons="{{buttons}}" bindbuttontap="onTapDialogButton">
   <view style="margin-bottom:30rpx;">
     <text>昵称</text>
-    <input name="nickname" type="text" value="{{enrollment.nickname}}" class="editable" bindblur="onChangeNickname" />
+    <input name="nickName" type="text" value="{{enrollment.nickName}}" class="editable" bindblur="onChangeNickName" />
   </view>
   <view>
     <text>问候语</text>
